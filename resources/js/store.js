@@ -26,7 +26,8 @@ export const store = new Vuex.Store({
         register(context, data){
             return new Promise((resolve, reject) =>{
                 axios.post('/register',{
-                    name: data.name,
+                    firstname: data.firstname,
+                    lastname: data.lastname,
                     email: data.email,
                     password: data.password,
                     password_confirmation: data.passwordConfirmation,
@@ -52,7 +53,6 @@ export const store = new Vuex.Store({
                     resolve(response)
                 })
                 .catch(error => {
-                    console.log(error)
                     reject(error)
                 })
              })

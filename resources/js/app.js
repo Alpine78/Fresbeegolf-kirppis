@@ -33,7 +33,7 @@ Vue.component('navbar', require('./components/Navbar.vue').default);
 Vue.component('login', require('./components/auth/Login.vue').default);
 Vue.component('logout', require('./components/auth/Logout.vue').default);
 Vue.component('register', require('./components/auth/Register.vue').default);
-Vue.component('Master', require('./components//layouts/Master.vue').default);
+Vue.component('Master', require('./components/layouts/Master.vue').default);
  /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

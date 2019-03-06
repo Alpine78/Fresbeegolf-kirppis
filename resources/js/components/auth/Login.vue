@@ -4,6 +4,12 @@
             <h1>Kirjaudu Sisään</h1>
 
             <form action="#" @submit.prevent="login">
+
+                <div v-if="serverError">
+                    <b-alert show variant="danger">{{ serverError }}</b-alert>
+                </div>
+
+
                 <div class="form-group">
                     <label for="username">Sähköposti</label>
                     <input type="text" id="username" name="username" class="form-control" v-model="username">
@@ -26,6 +32,7 @@
             return{
                 username: '',
                 password: '',
+                serverError: '',
             }
         },
         methods: {
@@ -35,6 +42,20 @@
                     password: this.password,
                 }).then(response => {
                         this.$router.push({name: 'frontpage'})
+                    })
+                    .catch(error =>{
+                        if(error.response.status == 401){
+                            this.serverError = "Sähköposti tai salasana oli virheellinen, ole hyvä ja yritä uudelleen"
+                            this.password = ''
+                        } else if (error.response.status == 400) {
+                            this.serverError = "Syötä sähköposti ja salasana"
+                            this.password = ''
+                        } else{
+                            this.serverError = "Sisäänkirjautumisessa tapahtui virhe, ole hyvä ja yritä uudelleen"
+                            this.password = ''
+                        }
+                        console.log(error.response)
+
                     })
             }
         }

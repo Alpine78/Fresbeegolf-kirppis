@@ -30,7 +30,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     a{
         color:black;
     }

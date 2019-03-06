@@ -1,11 +1,21 @@
 <template>
     <div class="row justify-content-center pt-4">
-        <div>
+        <div class="w-50">
             <h1>Rekisteröidy</h1>
+            <div v-if="serverErrors">
+                <b-alert v-for="(value, key) in serverErrors" :key="key" show variant="danger">{{ value[0] }}</b-alert>
+            </div>
+
+
+
             <form action="#" @submit.prevent="register">
                 <div class="form-group">
-                    <label for="name">Etu- ja Sukunimi</label>
-                    <input type="text" id="name" name="name" class="form-control" v-model="name">
+                    <label for="firstname">Etunimi</label>
+                    <input type="text" id="firstname" name="firstname" class="form-control" v-model="firstname">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Sukunimi</label>
+                    <input type="text" id="lastname" name="lastname" class="form-control" v-model="lastname">
                 </div>
                 <div class="form-group">
                     <label for="email">Sähköposti</label>
@@ -30,21 +40,27 @@
         name: "Register",
         data(){
             return{
-                name: "",
+                firstname: "",
+                lastname: "",
                 email: "",
                 password: "",
                 passwordConfirmation: "",
+                serverErrors: "",
             }
         },
         methods: {
             register(){
                 this.$store.dispatch('register', {
-                    name: this.name,
+                    firstname: this.firstname,
+                    lastname: this.lastname,
                     email: this.email,
                     password: this.password,
                     passwordConfirmation: this.passwordConfirmation,
                 }).then(response => {
                     this.$router.push({name: 'login'})
+                }).catch(error =>{
+                    this.serverErrors = Object.values(error.response.data.errors)
+                    console.log(error.response.data.errors)
                 })
 
             }
