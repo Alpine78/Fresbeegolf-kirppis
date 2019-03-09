@@ -75625,8 +75625,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\Fresbeegolf-kirppis-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\Fresbeegolf-kirppis-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp\www\Fresbeegolf-kirppis\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp\www\Fresbeegolf-kirppis\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
