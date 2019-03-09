@@ -5,6 +5,7 @@ import Login from './components/auth/Login'
 import Logout from './components/auth/Logout'
 import Register from './components/auth/Register'
 import FrontPage from './components/FrontPage'
+import Profile from "./components/Profile";
 
 
 
@@ -38,6 +39,14 @@ const router = new VueRouter({
             path: '/logout',
             name: 'logout',
             component: Logout,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
             meta: {
                 requiresAuth: true,
             },

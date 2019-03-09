@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use mysql_xdevapi\Exception;
-
 
 class AuthController extends Controller
 {
@@ -30,9 +30,10 @@ class AuthController extends Controller
 
     public function register(Request $request){
        $request->validate([
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'min:3', 'max:255'],
+            'lastname' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nickname' => ['required', 'string', 'min:5', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -40,6 +41,7 @@ class AuthController extends Controller
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
+            'nickname' => $request->nickname,
             'password' => Hash::make($request->password),
         ]);
 
@@ -52,6 +54,36 @@ class AuthController extends Controller
         return response()->json('Logged out succesfully', 200);
     }
 
+    public function updateUser(Request $request){
+        if(Auth::check()){
+            $user = Auth::user();
+
+
+            $request->validate([
+                'firstname' => ['required', 'string', 'min:3', 'max:255'],
+                'lastname' => ['required', 'string', 'min:3', 'max:255'],
+                'nickname' => ['required', 'string', 'min:5', 'max:255', Rule::unique('users')->ignore($user-> id)],
+                'zipcode' => [ 'string', 'max:10', 'nullable'],
+                'address' => [ 'string', 'max:255', 'nullable' ],
+                'city' => [ 'string', 'max:255', 'nullable'],
+                'phonenumber' => [ 'string', 'max:15', 'nullable'],
+            ]);
+
+            $user-> firstname = $request['firstname'];
+            $user-> lastname = $request['lastname'];
+            $user->nickname = $request['nickname'];
+            $user->zipcode = $request['zipcode'];
+            $user->address = $request['address'];
+            $user->city = $request['city'];
+            $user->phonenumber = $request['phonenumber'];
+
+            $user->save();
+            return response()->json('User updated succesfully', 200);
+        }else{
+            return response()->json('Not logged in', 400);
+        }
+
+    }
 
 
 }

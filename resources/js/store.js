@@ -28,6 +28,7 @@ export const store = new Vuex.Store({
                 axios.post('/register',{
                     firstname: data.firstname,
                     lastname: data.lastname,
+                    nickname: data.nickname,
                     email: data.email,
                     password: data.password,
                     password_confirmation: data.passwordConfirmation,
@@ -76,5 +77,45 @@ export const store = new Vuex.Store({
                 })
             }
         },
+        fetchUserData(context){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve, reject) =>{
+                    axios.get('/userdata',{
+                    })
+                        .then( response => {
+                            resolve(response)
+                        })
+                        .catch(error => {
+                            reject(error)
+                        })
+                })
+            }
+
+        },
+        updateUserData(context, data){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve, reject) =>{
+                    axios.post('/updateUser',{
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        nickname: data.nickname,
+                        address: data.address,
+                        zipcode: data.zipcode,
+                        city: data.city,
+                        phonenumber: data.phonenumber,
+                    })
+                        .then( response => {
+                            resolve(response)
+                        })
+                        .catch(error => {
+                            reject(error)
+                        })
+                })
+            }
+
+        },
+
     }
 })

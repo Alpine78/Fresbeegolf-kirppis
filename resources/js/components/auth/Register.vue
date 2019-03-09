@@ -1,6 +1,6 @@
 <template>
-    <div class="row justify-content-center pt-4">
-        <div class="w-50">
+    <div class="row pt-4 justify-content-center">
+        <b-alert show variant="info w-50">
             <h1>Rekisteröidy</h1>
             <div v-if="serverErrors">
                 <b-alert v-for="(value, key) in serverErrors" :key="key" show variant="danger">{{ value[0] }}</b-alert>
@@ -18,12 +18,19 @@
                     <input type="text" id="lastname" name="lastname" class="form-control" v-model="lastname">
                 </div>
                 <div class="form-group">
+                    <label for="lastname">Käyttäjätunnus</label>
+                    <input type="text" id="nickname" name="nickname" class="form-control" v-model="nickname">
+                </div>
+                <div class="form-group">
                     <label for="email">Sähköposti</label>
                     <input type="text" id="email" name="email" class="form-control" v-model="email">
                 </div>
                 <div class="form-group">
                     <label for="password">Salasana</label>
                     <input type="password" id="password" name="password" class="form-control" v-model="password">
+                    <b-form-text id="passwordHelpBlock">
+                       Salasanan täytyy olla vähintään 8-merkkiä.
+                    </b-form-text>
                 </div>
                 <div class="form-group">
                     <label for="password-confirmation">Vahvista salasana</label>
@@ -31,7 +38,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Rekisteröidy</button>
             </form>
-        </div>
+        </b-alert>
     </div>
 </template>
 
@@ -42,6 +49,7 @@
             return{
                 firstname: "",
                 lastname: "",
+                nickname: "",
                 email: "",
                 password: "",
                 passwordConfirmation: "",
@@ -53,11 +61,12 @@
                 this.$store.dispatch('register', {
                     firstname: this.firstname,
                     lastname: this.lastname,
+                    nickname: this.nickname,
                     email: this.email,
                     password: this.password,
                     passwordConfirmation: this.passwordConfirmation,
                 }).then(response => {
-                    this.$router.push({name: 'login'})
+                    this.$router.push({name: 'login', params: {msg: 'Rekisteröinti onnistui'}})
                 }).catch(error =>{
                     this.serverErrors = Object.values(error.response.data.errors)
                     console.log(error.response.data.errors)

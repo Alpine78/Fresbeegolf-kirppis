@@ -12,6 +12,7 @@
                     <b-navbar-nav>
                         <b-nav-item v-if="!loggedIn"><b-link :to="{ name: 'login'}">Kirjaudu sisään</b-link></b-nav-item>
                         <b-nav-item v-if="!loggedIn"><b-link :to="{ name: 'register'}">Rekisteröidy</b-link></b-nav-item>
+                        <b-nav-item v-if="loggedIn"><b-link :to="{ name: 'profile'}">Omat tiedot</b-link></b-nav-item>
                         <b-nav-item v-if="loggedIn"><b-link :to="{ name: 'logout'}">Kirjaudu ulos</b-link></b-nav-item>
                     </b-navbar-nav>
                 </b-navbar-nav>
