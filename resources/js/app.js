@@ -29,13 +29,16 @@ Vue.use(BootstrapVue);
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.component('navbar', require('./components/Navbar.vue').default);
+Vue.component('navbar', require('./components/navbar/Navbar.vue').default);
+Vue.component('PageFooter', require('./components/navbar/PageFooter.vue').default);
 Vue.component('login', require('./components/auth/Login.vue').default);
 Vue.component('logout', require('./components/auth/Logout.vue').default);
 Vue.component('register', require('./components/auth/Register.vue').default);
 Vue.component('profile', require('./components/Profile.vue').default);
-Vue.component('Master', require('./components/layouts/Master.vue').default);
- /**
+Vue.component('App', require('./components/App.vue').default);
+Vue.component('Testikomponentti', require('./components/Testikomponentti.vue').default);
+
+/**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.

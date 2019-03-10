@@ -12,9 +12,9 @@
 <body>
 
 
- <div id="app">
-<master></master>
- </div>
+    <div id="app">
+        <app></app>
+    </div>
 
 
 <script src="{{ asset('js/app.js') }}"></script>
