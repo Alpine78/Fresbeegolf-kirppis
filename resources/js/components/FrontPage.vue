@@ -1,9 +1,6 @@
 <template>
     <div>
         <p>TERVE</p>
-        <page-footer></page-footer>
-        <testikomponentti></testikomponentti>
-
     </div>
 </template>
 

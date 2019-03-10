@@ -36,7 +36,6 @@ Vue.component('logout', require('./components/auth/Logout.vue').default);
 Vue.component('register', require('./components/auth/Register.vue').default);
 Vue.component('profile', require('./components/Profile.vue').default);
 Vue.component('App', require('./components/App.vue').default);
-Vue.component('Testikomponentti', require('./components/Testikomponentti.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
