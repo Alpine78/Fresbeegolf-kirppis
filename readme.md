@@ -27,3 +27,7 @@ public function boot()
     Schema::defaultStringLength(191);
 }
 ```
+### ENV
+PASSPORT_LOGIN_ENDPOINT="http://localhost:8000/oauth/token"
+PASSPORT_CLIENT_ID=2
+PASSPORT_CLIENT_SECRET="key here"
