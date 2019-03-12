@@ -147,7 +147,7 @@ return [
         'email' => 'Sähköposti',
         'name' => 'Nimi',
         'password' => 'Salasana',
-        'firstname' => 'Rtunimi',
+        'firstname' => 'Etunimi',
         'lastname' => 'Sukunimi',
         'nickname' => 'Käyttäjätunnus',
 

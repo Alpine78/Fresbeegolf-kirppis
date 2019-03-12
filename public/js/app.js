@@ -1770,6 +1770,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FrontPage",
   components: {}
@@ -59101,7 +59104,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("p", [_vm._v("TERVE")]), _vm._v(" "), _c("search-result-item")],
+    [
+      _c("p", [_vm._v("TERVE")]),
+      _vm._v(" "),
+      _c(
+        "b-link",
+        { attrs: { to: { name: "demoadvert" } } },
+        [_c("search-result-item")],
+        1
+      )
+    ],
     1
   )
 }
@@ -78133,7 +78145,12 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  mode: 'history',
   routes: [{
+    path: '/demoadvert',
+    name: 'demoadvert',
+    component: _components_advert_AdvertBody__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
     path: '/login',
     name: 'login',
     component: _components_auth_Login__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -78165,10 +78182,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     meta: {
       requiresAuth: true
     }
-  }, {
-    path: '/demoadvert',
-    name: 'demoadvert',
-    component: _components_advert_AdvertBody__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);

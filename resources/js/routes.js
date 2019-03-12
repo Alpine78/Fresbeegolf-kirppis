@@ -14,7 +14,13 @@ import AdvertBody from './components/advert/AdvertBody';
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+    mode: 'history',
     routes: [
+        {
+            path: '/demoadvert',
+            name: 'demoadvert',
+            component: AdvertBody
+        },
         {
             path: '/login',
             name: 'login',
@@ -51,13 +57,7 @@ const router = new VueRouter({
             meta: {
                 requiresAuth: true,
             },
-        },
-        {
-            path: '/demoadvert',
-            name: 'demoadvert',
-            component: AdvertBody
-        },
-
+        }
     ]
 });
 
