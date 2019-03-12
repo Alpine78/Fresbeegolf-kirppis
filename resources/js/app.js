@@ -29,13 +29,28 @@ Vue.use(BootstrapVue);
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.component('navbar', require('./components/navbar/Navbar.vue').default);
-Vue.component('PageFooter', require('./components/navbar/PageFooter.vue').default);
+Vue.component('App', require('./components/App.vue').default);
+Vue.component('register', require('./components/auth/Register.vue').default);
 Vue.component('login', require('./components/auth/Login.vue').default);
 Vue.component('logout', require('./components/auth/Logout.vue').default);
-Vue.component('register', require('./components/auth/Register.vue').default);
 Vue.component('profile', require('./components/Profile.vue').default);
-Vue.component('App', require('./components/App.vue').default);
+Vue.component('AdvertBody', require('./components/advert/AdvertBody').default);
+Vue.component('AdvertDescription', require('./components/advert/AdvertDescription').default);
+Vue.component('AdvertMessages', require('./components/advert/AdvertMessages').default);
+Vue.component('AdvertPhoto', require('./components/advert/AdvertPhoto').default);
+Vue.component('PhotoGallery', require('./components/advert/PhotoGallery').default);
+Vue.component('SellerInfo', require('./components/advert/SellerInfo').default);
+Vue.component('ChatBody', require('./components/chat/ChatBody').default);
+Vue.component('ChatMessage', require('./components/chat/ChatMessage').default);
+Vue.component('NavBar', require('./components/navbar/NavBar.vue').default);
+Vue.component('UserBlock', require('./components/navbar/UserBlock').default);
+Vue.component('PageFooter', require('./components/navbar/PageFooter.vue').default);
+Vue.component('SearchBar', require('./components/search/SearchBar').default);
+Vue.component('SearchDescription', require('./components/search/SearchDescription').default);
+Vue.component('SearchInfo', require('./components/search/SearchInfo').default);
+Vue.component('SearchPhoto', require('./components/search/SearchPhoto').default);
+Vue.component('SearchResultItem', require('./components/search/SearchResultItem').default);
+Vue.component('SearchResults', require('./components/search/SearchResults').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

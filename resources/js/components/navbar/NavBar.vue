@@ -11,12 +11,12 @@
             <b-navbar-nav>
                 <b-nav-item href="#">Link</b-nav-item>
                 <b-nav-item href="#" disabled>Disabled</b-nav-item>
-                <b-button variant="outline-primary">Jätä ilmoitus</b-button>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-                <b-navbar-nav>
+                <b-navbar-nav>                    
+                    <b-button variant="outline-primary">Jätä ilmoitus</b-button>
                     <b-nav-item v-if="!loggedIn"><b-link :to="{ name: 'login'}">Kirjaudu sisään</b-link></b-nav-item>
                     <b-nav-item v-if="!loggedIn"><b-link :to="{ name: 'register'}">Rekisteröidy</b-link></b-nav-item>
                     <b-nav-item v-if="loggedIn"><b-link :to="{ name: 'profile'}">Omat tiedot</b-link></b-nav-item>
