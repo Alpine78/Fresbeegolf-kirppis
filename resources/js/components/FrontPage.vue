@@ -1,6 +1,7 @@
 <template>
     <div>
         <p>TERVE</p>
+        <search-result-item></search-result-item>
     </div>
 </template>
 

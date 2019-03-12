@@ -1,5 +1,11 @@
 <template>
-  
+  <div>
+    <advert-photo></advert-photo>
+    <photo-gallery></photo-gallery>
+    <advert-description></advert-description>
+    <seller-info></seller-info>
+    <advert-messages></advert-messages>
+  </div>
 </template>
 
 <script>

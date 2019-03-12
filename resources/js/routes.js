@@ -6,6 +6,7 @@ import Logout from './components/auth/Logout'
 import Register from './components/auth/Register'
 import FrontPage from './components/FrontPage'
 import Profile from "./components/Profile";
+import AdvertBody from './components/advert/AdvertBody';
 
 
 
@@ -50,6 +51,11 @@ const router = new VueRouter({
             meta: {
                 requiresAuth: true,
             },
+        },
+        {
+            path: '/demoadvert',
+            name: 'demoadvert',
+            component: AdvertBody
         },
 
     ]

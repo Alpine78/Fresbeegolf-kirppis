@@ -1769,6 +1769,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FrontPage",
   components: {}
@@ -1892,6 +1893,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AdvertBody'
 });
@@ -1907,6 +1914,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1930,6 +1942,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AdvertMessages'
 });
@@ -1945,6 +1965,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -1968,6 +1990,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AdvertGallery'
 });
@@ -1983,6 +2019,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2214,6 +2257,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ChatBody'
 });
@@ -2229,6 +2274,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2391,6 +2438,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SearchBar'
 });
@@ -2406,6 +2455,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -2429,6 +2481,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SearchInfo'
 });
@@ -2444,6 +2502,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2467,6 +2527,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SearchResultItem'
 });
@@ -2482,6 +2546,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -59033,16 +59099,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [_c("p", [_vm._v("TERVE")]), _vm._v(" "), _c("search-result-item")],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("TERVE")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -59345,7 +59408,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("advert-photo"),
+      _vm._v(" "),
+      _c("photo-gallery"),
+      _vm._v(" "),
+      _c("advert-description"),
+      _vm._v(" "),
+      _c("seller-info"),
+      _vm._v(" "),
+      _c("advert-messages")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59369,9 +59446,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", [
+        _vm._v(
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos atque eum harum adipisci nihil sint vitae, eos error culpa maiores. Accusantium placeat laudantium fuga consequuntur excepturi accusamus molestias earum maiores?"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt laborum laboriosam quas dolorum, distinctio ut! Aspernatur cupiditate odit autem inventore dignissimos ex nostrum quas? Impedit minima fuga veritatis quibusdam perferendis?\n  Cumque similique, praesentium aspernatur nobis ex perferendis quidem corrupti facere officia at quis asperiores aliquid officiis. Facere animi accusamus tenetur modi in, sed praesentium, sunt rem suscipit necessitatibus tempora ullam.\n  Unde harum eaque, excepturi molestiae quia facere, ullam animi, laudantium rerum aspernatur optio! Obcaecati fugit ipsum facilis optio! Error sint eveniet rem mollitia excepturi recusandae molestiae asperiores, in ex nobis."
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -59393,9 +59489,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("ul", [
+        _c("li", [_vm._v("Terve!")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Terve vaan!")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Moro!")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Myy kympillä!")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Kiitos, ei!")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -59417,7 +59532,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("b-img", {
+        attrs: {
+          src:
+            "http://www.prodigydisc.eu/file/2016/12/Prodigy-Disc-750-X1-blue.png",
+          "fluid-grow": "",
+          alt: "Fluid-grow image",
+          width: "50%"
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59441,7 +59570,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c(
+        "b-container",
+        { staticClass: "p-4 bg-dark", attrs: { fluid: "" } },
+        [
+          _c(
+            "b-row",
+            [
+              _c(
+                "b-col",
+                [
+                  _c("b-img", {
+                    attrs: {
+                      thumbnail: "",
+                      fluid: "",
+                      src:
+                        "http://www.prodigydisc.eu/file/2016/11/Prodigy-Disc_400_A1_blue.png",
+                      alt: "Image 1"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                [
+                  _c("b-img", {
+                    attrs: {
+                      thumbnail: "",
+                      fluid: "",
+                      src:
+                        "http://www.prodigydisc.eu/file/2017/01/Prodigy-Disc-400g-H1-orange.png.png",
+                      alt: "Image 2"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                [
+                  _c("b-img", {
+                    attrs: {
+                      thumbnail: "",
+                      fluid: "",
+                      src:
+                        "https://www.innovastore.net/tuotekuvat/600x600/Ch_Leopard_600px.jpg",
+                      alt: "Image 3"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59465,9 +59659,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("ul", [
+        _c("li", [_vm._v("Ilkka Rytkönen")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Kaihorannankatu 5")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("70420 Kuopio")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("ilkka@ilkkarytkonen.fi")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -60130,21 +60341,17 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("li", { staticClass: "list-inline-item" }, [
                 _c("a", { staticClass: "btn-floating btn-dribbble mx-1" }, [
-                  _c("i", { staticClass: "fab fa-dribbble" })
+                  _c("i", { staticClass: "fab fa-signal" })
                 ])
               ])
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "footer-copyright text-center py-3" }, [
-            _vm._v("© 2018 Copyright:\n      "),
-            _c(
-              "a",
-              {
-                attrs: { href: "https://mdbootstrap.com/education/bootstrap/" }
-              },
-              [_vm._v(" MDBootstrap.com")]
-            )
+            _vm._v("© 2019 Copyright:\n      "),
+            _c("a", { attrs: { href: "#" } }, [
+              _vm._v(" Ilkka Rytkönen, Niko Lipponen")
+            ])
           ])
         ]
       )
@@ -60234,9 +60441,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h2", [_vm._v("Lorem")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex autem voluptatum officiis delectus quidem similique id corrupti labore distinctio, perspiciatis voluptates impedit enim ab cupiditate eos tempora nulla earum cumque!"
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -60258,9 +60480,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("ul", [
+        _c("li", [_vm._v("Matti Mainio")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Kuopio")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("matti@kukkarossa.fi")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -60282,7 +60519,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("b-img", {
+        attrs: {
+          src:
+            "http://www.prodigydisc.eu/wp-content/uploads/2017/01/Prodigy-Disc-400-M3-green.png",
+          fluid: "",
+          alt: "Fluid image",
+          width: "200em"
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60306,7 +60557,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("search-description"),
+      _vm._v(" "),
+      _c("search-photo"),
+      _vm._v(" "),
+      _c("search-info")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -77861,6 +78122,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_Register__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/auth/Register */ "./resources/js/components/auth/Register.vue");
 /* harmony import */ var _components_FrontPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/FrontPage */ "./resources/js/components/FrontPage.vue");
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.vue");
+/* harmony import */ var _components_advert_AdvertBody__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/advert/AdvertBody */ "./resources/js/components/advert/AdvertBody.vue");
+
 
 
 
@@ -77902,6 +78165,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     meta: {
       requiresAuth: true
     }
+  }, {
+    path: '/demoadvert',
+    name: 'demoadvert',
+    component: _components_advert_AdvertBody__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
