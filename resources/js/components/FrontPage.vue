@@ -1,10 +1,14 @@
 <template>
-<p>TERVE</p>
+    <div>
+        <p>TERVE</p>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "FrontPage"
+        name: "FrontPage",
+        components: {
+        }
     }
 </script>
 
