@@ -7,6 +7,7 @@ import Register from './components/auth/Register'
 import FrontPage from './components/FrontPage'
 import Profile from "./components/Profile";
 import AdvertBody from './components/advert/AdvertBody';
+import AdvertForm from './components/advert/AdvertForm';
 
 
 
@@ -54,6 +55,14 @@ const router = new VueRouter({
             path: '/profile',
             name: 'profile',
             component: Profile,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/ilmoitus',
+            name: 'ilmoitus',
+            component: AdvertForm,
             meta: {
                 requiresAuth: true,
             },

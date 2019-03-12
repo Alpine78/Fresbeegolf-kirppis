@@ -35,6 +35,7 @@ Vue.component('login', require('./components/auth/Login.vue').default);
 Vue.component('logout', require('./components/auth/Logout.vue').default);
 Vue.component('profile', require('./components/Profile.vue').default);
 Vue.component('AdvertBody', require('./components/advert/AdvertBody').default);
+Vue.component('AdvertForm', require('./components/advert/AdvertForm').default);
 Vue.component('AdvertDescription', require('./components/advert/AdvertDescription').default);
 Vue.component('AdvertMessages', require('./components/advert/AdvertMessages').default);
 Vue.component('AdvertPhoto', require('./components/advert/AdvertPhoto').default);
