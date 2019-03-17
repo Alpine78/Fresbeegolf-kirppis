@@ -1773,6 +1773,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FrontPage",
   components: {}
@@ -59209,7 +59210,7 @@ var render = function() {
       _c(
         "b-link",
         { attrs: { to: { name: "demoadvert" } } },
-        [_c("search-result-item")],
+        [_c("search-result-item"), _vm._v(" "), _c("p", [_vm._v("lorem*5")])],
         1
       )
     ],
