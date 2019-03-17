@@ -6,6 +6,8 @@ import Logout from './components/auth/Logout'
 import Register from './components/auth/Register'
 import FrontPage from './components/FrontPage'
 import Profile from "./components/Profile";
+import AdvertBody from './components/advert/AdvertBody';
+import AdvertForm from './components/advert/AdvertForm';
 
 
 
@@ -13,7 +15,13 @@ import Profile from "./components/Profile";
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+    mode: 'history',
     routes: [
+        {
+            path: '/demoadvert',
+            name: 'demoadvert',
+            component: AdvertBody
+        },
         {
             path: '/login',
             name: 'login',
@@ -51,7 +59,14 @@ const router = new VueRouter({
                 requiresAuth: true,
             },
         },
-
+        {
+            path: '/ilmoitus',
+            name: 'ilmoitus',
+            component: AdvertForm,
+            meta: {
+                requiresAuth: true,
+            },
+        }
     ]
 });
 
