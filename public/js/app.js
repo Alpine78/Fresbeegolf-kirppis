@@ -1985,20 +1985,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AdvertForm',
   data: function data() {
     return {
       form: {
-        email: '',
+        title: '',
+        content: '',
+        brand: '',
         name: '',
-        food: null,
-        checked: []
+        type: null,
+        price: ''
       },
-      foods: [{
-        text: 'Select One',
+      discs: [{
+        text: 'Valitse yksi',
         value: null
-      }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+      }, 'Putteri', 'Midari', 'Väylädriveri', 'Driveri', 'Pituusdriveri'],
       show: true
     };
   },
@@ -2013,10 +2052,12 @@ __webpack_require__.r(__webpack_exports__);
       evt.preventDefault();
       /* Reset our form values */
 
-      this.form.email = '';
+      this.form.title = '';
+      this.form.content = '';
+      this.form.brand = '';
       this.form.name = '';
-      this.form.food = null;
-      this.form.checked = [];
+      this.form.type = null;
+      this.form.price = '';
       /* Trick to reset/clear native browser form validation state */
 
       this.show = false;
@@ -59613,27 +59654,26 @@ var render = function() {
                 "b-form-group",
                 {
                   attrs: {
-                    id: "exampleInputGroup1",
-                    label: "Email address:",
-                    "label-for": "exampleInput1",
-                    description:
-                      "We'll never share your email with anyone else."
+                    id: "titleGroup",
+                    label: "Ilmoituksen otsikko:",
+                    "label-for": "title",
+                    description: "Anna ilmoitukselle kuvaava otsikko."
                   }
                 },
                 [
                   _c("b-form-input", {
                     attrs: {
-                      id: "exampleInput1",
-                      type: "email",
+                      id: "title",
+                      type: "text",
                       required: "",
-                      placeholder: "Enter email"
+                      placeholder: "Kirjoita otsikko"
                     },
                     model: {
-                      value: _vm.form.email,
+                      value: _vm.form.title,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
+                        _vm.$set(_vm.form, "title", $$v)
                       },
-                      expression: "form.email"
+                      expression: "form.title"
                     }
                   })
                 ],
@@ -59644,18 +59684,49 @@ var render = function() {
                 "b-form-group",
                 {
                   attrs: {
-                    id: "exampleInputGroup2",
-                    label: "Your Name:",
-                    "label-for": "exampleInput2"
+                    id: "brandGroup",
+                    label: "Merkki:",
+                    "label-for": "brand",
+                    description: "Kiekon merkki"
                   }
                 },
                 [
                   _c("b-form-input", {
                     attrs: {
-                      id: "exampleInput2",
+                      id: "brand",
                       type: "text",
                       required: "",
-                      placeholder: "Enter name"
+                      placeholder: "Kirjoita kiekon merkki"
+                    },
+                    model: {
+                      value: _vm.form.brand,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "brand", $$v)
+                      },
+                      expression: "form.brand"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "nameGroup",
+                    label: "Nimi:",
+                    "label-for": "name",
+                    description: "Kiekon nimi"
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    attrs: {
+                      id: "name",
+                      type: "text",
+                      required: "",
+                      placeholder: "Kirjoita kiekon nimi"
                     },
                     model: {
                       value: _vm.form.name,
@@ -59673,24 +59744,26 @@ var render = function() {
                 "b-form-group",
                 {
                   attrs: {
-                    id: "exampleInputGroup3",
-                    label: "Food:",
-                    "label-for": "exampleInput3"
+                    id: "contentGroup",
+                    label: "Ilmoituksen sisältö:",
+                    "label-for": "content"
                   }
                 },
                 [
-                  _c("b-form-select", {
+                  _c("b-form-textarea", {
                     attrs: {
-                      id: "exampleInput3",
-                      options: _vm.foods,
-                      required: ""
+                      id: "content",
+                      rows: "3",
+                      "max-rows": "6",
+                      required: "",
+                      placeholder: "Kirjoita ilmoituksen sisältö"
                     },
                     model: {
-                      value: _vm.form.food,
+                      value: _vm.form.content,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "food", $$v)
+                        _vm.$set(_vm.form, "content", $$v)
                       },
-                      expression: "form.food"
+                      expression: "form.content"
                     }
                   })
                 ],
@@ -59699,31 +59772,54 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form-group",
-                { attrs: { id: "exampleGroup4" } },
+                {
+                  attrs: {
+                    id: "typeGroup",
+                    label: "Tyyppi:",
+                    "label-for": "type"
+                  }
+                },
                 [
-                  _c(
-                    "b-form-checkbox-group",
-                    {
-                      attrs: { id: "exampleChecks" },
-                      model: {
-                        value: _vm.form.checked,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "checked", $$v)
-                        },
-                        expression: "form.checked"
-                      }
+                  _c("b-form-select", {
+                    attrs: { id: "type", options: _vm.discs, required: "" },
+                    model: {
+                      value: _vm.form.type,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "type", $$v)
+                      },
+                      expression: "form.type"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "pricedGroup",
+                    label: "Hinta:",
+                    "label-for": "price",
+                    description: "Kiekon hinta"
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    attrs: {
+                      id: "price",
+                      type: "number",
+                      required: "",
+                      placeholder: "Kirjoita kiekon hinta"
                     },
-                    [
-                      _c("b-form-checkbox", { attrs: { value: "me" } }, [
-                        _vm._v("Check me out")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-form-checkbox", { attrs: { value: "that" } }, [
-                        _vm._v("Check that out")
-                      ])
-                    ],
-                    1
-                  )
+                    model: {
+                      value: _vm.form.price,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "price", $$v)
+                      },
+                      expression: "form.price"
+                    }
+                  })
                 ],
                 1
               ),

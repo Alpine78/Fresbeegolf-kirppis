@@ -1,38 +1,75 @@
 <template>
   <div>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+
       <b-form-group
-        id="exampleInputGroup1"
-        label="Email address:"
-        label-for="exampleInput1"
-        description="We'll never share your email with anyone else."
+        id="titleGroup"
+        label="Ilmoituksen otsikko:"
+        label-for="title"
+        description="Anna ilmoitukselle kuvaava otsikko."
       >
         <b-form-input
-          id="exampleInput1"
-          type="email"
-          v-model="form.email"
+          id="title"
+          type="text"
+          v-model="form.title"
           required
-          placeholder="Enter email" />
+          placeholder="Kirjoita otsikko" />
       </b-form-group>
 
-      <b-form-group id="exampleInputGroup2" label="Your Name:" label-for="exampleInput2">
+      <b-form-group
+        id="brandGroup"
+        label="Merkki:"
+        label-for="brand"
+        description="Kiekon merkki"
+      >
         <b-form-input
-          id="exampleInput2"
+          id="brand"
+          type="text"
+          v-model="form.brand"
+          required
+          placeholder="Kirjoita kiekon merkki" />
+      </b-form-group>
+
+      <b-form-group
+        id="nameGroup"
+        label="Nimi:"
+        label-for="name"
+        description="Kiekon nimi"
+      >
+        <b-form-input
+          id="name"
           type="text"
           v-model="form.name"
           required
-          placeholder="Enter name" />
+          placeholder="Kirjoita kiekon nimi" />
       </b-form-group>
 
-      <b-form-group id="exampleInputGroup3" label="Food:" label-for="exampleInput3">
-        <b-form-select id="exampleInput3" :options="foods" required v-model="form.food" />
+      <b-form-group id="contentGroup" label="Ilmoituksen sisältö:" label-for="content">
+        <b-form-textarea
+          id="content"
+          rows="3"
+          max-rows="6"
+          v-model="form.content"
+          required
+          placeholder="Kirjoita ilmoituksen sisältö" />
       </b-form-group>
 
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
+      <b-form-group id="typeGroup" label="Tyyppi:" label-for="type">
+        <b-form-select id="type" :options="discs" required v-model="form.type" />
+      </b-form-group>
+
+      <b-form-group
+        id="pricedGroup"
+        label="Hinta:"
+        label-for="price"
+        description="Kiekon hinta"
+      >
+        <b-form-input
+          id="price"
+          type="number"
+          v-model="form.price"
+          required
+          placeholder="Kirjoita kiekon hinta" />
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
@@ -47,12 +84,14 @@
     data() {
       return {
         form: {
-          email: '',
+          title: '',
+          content: '',
+          brand: '',
           name: '',
-          food: null,
-          checked: []
+          type: null,
+          price: ''
         },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+        discs: [{ text: 'Valitse yksi', value: null }, 'Putteri', 'Midari', 'Väylädriveri', 'Driveri', 'Pituusdriveri'],
         show: true
       }
     },
@@ -64,10 +103,12 @@
       onReset(evt) {
         evt.preventDefault()
         /* Reset our form values */
-        this.form.email = ''
+        this.form.title = ''
+        this.form.content = ''
+        this.form.brand = ''
         this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
+        this.form.type = null
+        this.form.price = ''
         /* Trick to reset/clear native browser form validation state */
         this.show = false
         this.$nextTick(() => {
