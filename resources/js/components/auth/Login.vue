@@ -23,7 +23,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Kirjaudu Sisään</button>
             </form>
-            <p class="pt-2">Eikö sinulla ole vielä tunnusta?  <router-link :to="{ name: 'register' }"><a>Rekisteröidy ensin!</a></router-link></p>
+            <p class="pt-2">Eikö sinulla ole vielä tunnusta?  <router-link :to="{ name: 'rekisteroidy' }"><a>Rekisteröidy ensin!</a></router-link></p>
         </div>
         </b-alert>
     </div>
@@ -49,7 +49,7 @@
                     username: this.username,
                     password: this.password,
                 }).then(response => {
-                        this.$router.push({name: 'frontpage'})
+                        this.$router.push({name: 'etusivu'})
                     })
                     .catch(error =>{
                         if(error.response.status == 401){

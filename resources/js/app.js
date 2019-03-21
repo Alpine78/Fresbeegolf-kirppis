@@ -42,6 +42,8 @@ Vue.component('PhotoGallery', require('./components/advert/PhotoGallery').defaul
 Vue.component('SellerInfo', require('./components/advert/SellerInfo').default);
 Vue.component('ChatBody', require('./components/chat/ChatBody').default);
 Vue.component('ChatMessage', require('./components/chat/ChatMessage').default);
+Vue.component('ChatLog', require('./components/chat/ChatLog').default);
+Vue.component('ChatComposer', require('./components/chat/ChatComposer').default);
 Vue.component('NavBar', require('./components/navbar/NavBar.vue').default);
 Vue.component('UserBlock', require('./components/navbar/UserBlock').default);
 Vue.component('PageFooter', require('./components/navbar/PageFooter.vue').default);
@@ -51,6 +53,7 @@ Vue.component('SearchInfo', require('./components/search/SearchInfo').default);
 Vue.component('SearchPhoto', require('./components/search/SearchPhoto').default);
 Vue.component('SearchResultItem', require('./components/search/SearchResultItem').default);
 Vue.component('SearchResults', require('./components/search/SearchResults').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

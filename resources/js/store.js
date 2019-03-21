@@ -6,8 +6,19 @@ Vue.use(Vuex)
 axios.defaults.baseURL = "http://localhost:8000/api"
 
 export const store = new Vuex.Store({
+
     state:{
         token: localStorage.getItem('access_token') || null,
+        messages: [
+            {
+                message: "Hey!",
+                user: "John doe"
+            },
+            {
+                message: "Hello",
+                user: "Iiris Huotari"
+            }
+        ]
     },
     getters: {
       loggedIn(state){
@@ -21,6 +32,9 @@ export const store = new Vuex.Store({
         destroyToken(state){
             state.token = null
         },
+        pushMessage(state, message){
+            state.messages.push(message)
+        }
     },
     actions:{
         register(context, data){
@@ -115,6 +129,10 @@ export const store = new Vuex.Store({
                 })
             }
 
+        },
+        addMessage(message) {
+          console.log(message);
+          store.commit('pushMessage', message)
         },
 
     }
