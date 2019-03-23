@@ -30,7 +30,12 @@ class AddColumnsToUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-
+//            $table->dropColumn('deleted_at');
+            $table->dropColumn('nickname');
+            $table->dropColumn('address');
+            $table->dropColumn('city');
+            $table->dropColumn('zipcode');
+            $table->dropColumn('phonenumber');
         });
     }
 }
