@@ -41,6 +41,17 @@ class AdvertController extends Controller
     public function store(Request $request)
     {
         //
+        $advert = $request->isMethod('put') ?
+            Advert::findOrFail($request->advert_id) :
+            new Advert;
+
+        $advert->id = $request->input('advert_id');
+        $advert->title = $request->input('title');
+        $advert->content = $request->input('content');
+
+        if($advert->save()) {
+            return new AdvertResource($advert);
+        }
     }
 
     /**
@@ -51,7 +62,11 @@ class AdvertController extends Controller
      */
     public function show($id)
     {
-        //
+        // Hae ilmoitus
+        $advert = Advert::findOrFail($id);
+
+        // Palauta yksi ilmoitus resurssina
+        return new AdvertResource($advert);
     }
 
     /**
@@ -85,6 +100,11 @@ class AdvertController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Hae ilmoitus
+        $advert = Advert::findOrFail($id);
+
+        if($advert->delete()) {
+            return new AdvertResource($advert);
+        }
     }
 }

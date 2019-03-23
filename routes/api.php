@@ -38,17 +38,17 @@ Route::middleware('auth:api')->post('/updateUser', 'AuthController@updateUser');
 Route::middleware('auth:api')->post('/logout', 'AuthController@logout');
 
 
-// Ilmoitukset
+// Kaikki ilmoitukset
 Route::get('ilmoitukset', 'AdvertController@index');
 
 // Yksi ilmoitus
 Route::get('ilmoitus/{id}', 'AdvertController@show');
 
 // Luo ilmoitus
-//Route::post('ilmoitus', 'AdvertController@store');
+Route::post('ilmoitus', 'AdvertController@store');
 
 // Päivitä ilmoitus
-//Route::put('ilmoitukset', 'AdvertController@show');
+Route::put('ilmoitus', 'AdvertController@show');
 
-// Päivitä ilmoitus
-//Route::delete('ilmoitukset', 'AdvertController@destroy');
+// Poista ilmoitus
+Route::delete('ilmoitus/{id}', 'AdvertController@destroy');

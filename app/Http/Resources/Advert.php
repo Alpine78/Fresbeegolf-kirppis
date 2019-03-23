@@ -14,6 +14,18 @@ class Advert extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+//        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'content' => $this->content
+        ];
+    }
+
+    public function with($request)
+    {
+        return [
+          'author_url' => url('https://ilkkarytkonen.fi/')
+        ];
     }
 }
