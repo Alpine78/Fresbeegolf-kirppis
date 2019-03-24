@@ -1,7 +1,10 @@
 <template>
-  <div>
-    {{ adverts }}
-  </div>
+  <b-container>
+    <search-result-item
+      v-for="advert in adverts" :key="advert.id"
+      :advert="advert"
+     />
+  </b-container>
 </template>
 
 <script>

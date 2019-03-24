@@ -1,14 +1,24 @@
 <template>
-  <div>
-    <search-description></search-description>
-    <search-photo></search-photo>
-    <search-info></search-info>
-  </div>
+  <b-container>
+    <b-row>
+      <search-description
+        :title="advert.title"
+        :content="advert.content"
+      />
+      <search-photo></search-photo>
+      <search-info
+        :user="advert.user"
+      />
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 export default {
-  name: 'SearchResultItem'
+  name: 'SearchResultItem',
+  props: {
+    advert: {}
+  }
 }
 </script>
 

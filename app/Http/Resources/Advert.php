@@ -41,15 +41,15 @@ class Advert extends JsonResource
         ];
     }
 
-    public function with($request)
-    {
-        // Palautetaan ilmoituksen mukana tietoja:
-//        Nämä tulevat yksittäisen ilmoituksen mukana.
-//
-//        $user = User::findOrFail($this->user_id);
-//
-//        return [
-//            'user' => $user
-//        ];
-    }
+//    public function with($request)
+//    {
+//        // Palautetaan ilmoituksen mukana tietoja:
+////        Nämä tulevat yksittäisen ilmoituksen mukana.
+////
+////        $user = User::findOrFail($this->user_id);
+////
+////        return [
+////            'user' => $user
+////        ];
+//    }
 }
