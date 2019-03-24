@@ -9,6 +9,7 @@ class Advert extends Model
 {
     //
     use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     public function photos() {
         return $this->hasMany('App\Photo');

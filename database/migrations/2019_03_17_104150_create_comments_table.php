@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('advert_id')->unsigned()->nullable();
             $table->text('content');
-            $table->timestamp('flagged_at');
+            $table->timestamp('flagged_at')->nullable()->default(null);
             $table->timestamps();
         });
     }

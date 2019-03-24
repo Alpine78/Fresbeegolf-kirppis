@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <b-container>
     <advert-photo></advert-photo>
     <photo-gallery></photo-gallery>
     <advert-description></advert-description>
     <seller-info></seller-info>
     <advert-messages></advert-messages>
-  </div>
+  </b-container>
 </template>
 
 <script>

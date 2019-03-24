@@ -36,3 +36,19 @@ Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 Route::middleware('auth:api')->post('/updateUser', 'AuthController@updateUser');
 Route::middleware('auth:api')->post('/logout', 'AuthController@logout');
+
+
+// Kaikki ilmoitukset
+Route::get('ilmoitukset', 'AdvertController@index');
+
+// Yksi ilmoitus
+Route::get('ilmoitus/{id}', 'AdvertController@show');
+
+// Luo ilmoitus
+Route::post('ilmoitus', 'AdvertController@store');
+
+// Päivitä ilmoitus
+Route::put('ilmoitus', 'AdvertController@show');
+
+// Poista ilmoitus
+Route::delete('ilmoitus/{id}', 'AdvertController@destroy');
