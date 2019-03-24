@@ -1,10 +1,11 @@
 <template>
-    <div>
+    <b-container>
         <p>TERVE</p>
         <b-link :to="{ name: 'demoadvert'}">
         <search-result-item></search-result-item>
         </b-link>
-    </div>
+        <search-results></search-results>
+    </b-container>
 </template>
 
 <script>

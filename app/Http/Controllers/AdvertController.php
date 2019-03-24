@@ -16,10 +16,10 @@ class AdvertController extends Controller
     public function index()
     {
         // Ilmoitukset
-        $advert = Advert::paginate(15);
+        $adverts = Advert::paginate(15);
 
         // Palauta kaikki resurssina
-        return AdvertResource::collection($advert);
+        return AdvertResource::collection($adverts);
     }
 
     /**

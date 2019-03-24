@@ -12,6 +12,6 @@ $factory->define(App\Advert::class, function (Faker $faker) {
         'type' => $faker->numberBetween(0, 4),
         'condition' => $faker->numberBetween(1, 5),
         'price' => $faker->numberBetween(1, 50),
-        'main_photo_id' => $faker->numberBetween(0, 4),
+        'main_photo_id' => $faker->numberBetween(1, 4),
     ];
 });
