@@ -1,9 +1,11 @@
 <template>
-  <b-container>
+<b-container>
+  <b-card-group v-for="advert in adverts" :key="advert.id" >
     <search-result-item
-      v-for="advert in adverts" :key="advert.id"
       :advert="advert"
-     />
+      />
+
+  </b-card-group>
   </b-container>
 </template>
 
@@ -12,10 +14,19 @@ export default {
   name: 'SearchResults',
   data: function() {
     return {
-      adverts: []
+      adverts: [],
+      counter: 1
     }
   },
   methods: {
+  },
+  computed: {
+    count() {
+      this.counter++;
+      console.log('rivi', this.counter);
+      if (this.counter == 4) this.counter = 1;
+      return this.counter;
+    }
   },
   mounted() {
     axios
