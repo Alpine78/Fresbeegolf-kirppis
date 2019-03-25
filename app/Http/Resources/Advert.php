@@ -27,6 +27,7 @@ class Advert extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
+            'updated_at' => $this->updated_at,
             'user' => [
                 'user_id' => $user->id,
                 'firstname' => $user->firstname,

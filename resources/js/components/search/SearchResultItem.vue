@@ -9,16 +9,24 @@
       </b-card-text>
       {{ counter }}
       <b-button href="#" variant="primary">Näytä ilmoitus</b-button>
-      <div slot="footer"><small class="text-muted">Last updated 3 mins ago</small></div>
+      <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
     </b-card>  
 </template>
 
 <script>
+import moment from 'moment';
 export default {
   name: 'SearchResultItem',
   props: {
     advert: {},
     counter: Number
+  },
+  computed: {
+    updated() {
+      // return 'test';
+      moment.locale( "fi" );
+      return moment(this.advert.updated_at).fromNow();
+    }
   }
 }
 </script>
