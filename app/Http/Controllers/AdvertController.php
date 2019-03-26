@@ -16,7 +16,8 @@ class AdvertController extends Controller
     public function index()
     {
         // Ilmoitukset
-        $adverts = Advert::paginate(15);
+        $adverts = Advert::orderBy('updated_at', 'desc')->get();
+            //->paginate(15);
 
         // Palauta kaikki resurssina
         return AdvertResource::collection($adverts);

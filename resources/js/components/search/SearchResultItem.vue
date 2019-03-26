@@ -7,7 +7,6 @@
       <b-card-text>
         {{ advert.content }}
       </b-card-text>
-      {{ counter }}
       <b-button href="#" variant="primary">Näytä ilmoitus</b-button>
       <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
     </b-card>  
