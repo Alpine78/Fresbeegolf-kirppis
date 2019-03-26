@@ -9,9 +9,11 @@
       aria-controls="myTable"
     />
     <p class="mt-3">Current Page: {{ currentPage }}</p>
+
     <b-table
       id="myTable"
       :items="adverts"
+      :fields="fields"
       :per-page="perPage"
       :current-page="currentPage"
       small
@@ -55,6 +57,14 @@ export default {
       edit: false,
       perPage: 5,
       currentPage: 1,
+      fields: [
+        {
+          key: 'user.firstname',
+          label: 'Etunimi',
+          sortable: true
+
+        }
+      ]
     }
   },
   methods: {
