@@ -49,6 +49,7 @@
       v-for="advert in adverts" :key="advert.id"
       :advert="advert"
       :counter="advert.id"
+      @refreshAdverts="getAdverts"
       />
   </b-card-group>
 
@@ -73,6 +74,9 @@ export default {
     }
   },
   methods: {
+    testi() {
+      console.log('Pgjhgjhg');
+    },
     getAdverts(page_url) {
       let vm = this;
       page_url = page_url || 'api/ilmoitukset';

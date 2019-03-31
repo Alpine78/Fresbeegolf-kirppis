@@ -8,6 +8,7 @@
         {{ advert.content }}
       </b-card-text>
       <b-button href="#" variant="primary">Näytä ilmoitus</b-button>
+      <b-button @click="deleteAdvert(advert.id)" variant="danger">Poista</b-button>
       <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
     </b-card>  
 </template>
@@ -25,6 +26,21 @@ export default {
       // return 'test';
       moment.locale( "fi" );
       return moment(this.advert.updated_at).fromNow();
+    }
+  },
+  methods: {
+    deleteAdvert(id) {
+      if (confirm('Haluatko varmasti poistaa ilmoituksen?')) {
+        fetch(`api/ilmoitus/${id}`, {
+          method: 'delete'
+        })
+        .then(res => res.json)
+        .then(data => {
+          alert('Ilmoitus poistettu!');
+          this.$emit('refreshAdverts')
+        })
+        .catch(err => console.log(err));
+      }
     }
   }
 }
