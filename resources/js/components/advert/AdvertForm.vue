@@ -31,17 +31,17 @@
       </b-form-group>
 
       <b-form-group
-        id="nameGroup"
-        label="Nimi:"
-        label-for="name"
-        description="Kiekon nimi"
+        id="modelGroup"
+        label="Malli:"
+        label-for="model"
+        description="Kiekon malli"
       >
         <b-form-input
-          id="name"
+          id="model"
           type="text"
-          v-model="form.name"
+          v-model="form.model"
           required
-          placeholder="Kirjoita kiekon nimi" />
+          placeholder="Kirjoita kiekon malli" />
       </b-form-group>
 
       <b-form-group id="contentGroup" label="Ilmoituksen sisältö:" label-for="content">
@@ -56,6 +56,10 @@
 
       <b-form-group id="typeGroup" label="Tyyppi:" label-for="type">
         <b-form-select id="type" :options="discs" required v-model="form.type" />
+      </b-form-group>
+
+      <b-form-group id="conditionGroup" label="Kunto:" label-for="condition">
+        <b-form-select id="condition" :options="conditions" required v-model="form.condition" />
       </b-form-group>
 
       <b-form-group
@@ -87,11 +91,13 @@
           title: '',
           content: '',
           brand: '',
-          name: '',
+          model: '',
           type: null,
+          condition: null,
           price: ''
         },
         discs: [{ text: 'Valitse yksi', value: null }, 'Putteri', 'Midari', 'Väylädriveri', 'Driveri', 'Pituusdriveri'],
+        conditions: [{ text: 'Valitse yksi', value: null }, 'Uusi', 'Uudenveroinen', 'Hyvä', 'Tyydyttävä', 'Huono'],
         show: true
       }
     },
@@ -106,8 +112,9 @@
         this.form.title = ''
         this.form.content = ''
         this.form.brand = ''
-        this.form.name = ''
+        this.form.model = ''
         this.form.type = null
+        this.form.condition = null
         this.form.price = ''
         /* Trick to reset/clear native browser form validation state */
         this.show = false
