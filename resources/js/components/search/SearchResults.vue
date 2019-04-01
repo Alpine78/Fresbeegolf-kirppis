@@ -49,7 +49,7 @@
       v-for="advert in adverts" :key="advert.id"
       :advert="advert"
       :counter="advert.id"
-      @refreshAdverts="getAdverts"
+      @refreshAdverts="getAdverts(current_page_url)"
       />
   </b-card-group>
 
@@ -69,8 +69,8 @@ export default {
       },
       advert_id: '',
       pagination: {},
-      edit: false
-
+      edit: false,
+      current_page_url: ''
     }
   },
   methods: {
@@ -78,6 +78,10 @@ export default {
       console.log('Pgjhgjhg');
     },
     getAdverts(page_url) {
+      if (page_url) {
+        this.current_page_url = page_url;
+        console.log(this.current_page_url);
+      }
       let vm = this;
       page_url = page_url || 'api/ilmoitukset';
       fetch(page_url)
