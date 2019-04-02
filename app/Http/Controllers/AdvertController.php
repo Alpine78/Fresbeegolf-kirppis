@@ -44,12 +44,18 @@ class AdvertController extends Controller
     {
         //
         $advert = $request->isMethod('put') ?
-            Advert::findOrFail($request->advert_id) :
-            new Advert;
+            Advert::findOrFail($request->advert_id) : new Advert;
 
         $advert->id = $request->input('advert_id');
+        $advert->user_id = $request->input('user_id');
         $advert->title = $request->input('title');
         $advert->content = $request->input('content');
+        $advert->brand = $request->input('brand');
+        $advert->model = $request->input('model');
+        $advert->type = $request->input('type');
+        $advert->condition = $request->input('condition');
+        $advert->price = $request->input('price');
+        $advert->main_photo_id = $request->input('main_photo_id');
 
         if($advert->save()) {
             return new AdvertResource($advert);

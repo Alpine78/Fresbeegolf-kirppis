@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form @submit.prevent="onSubmit" @reset.prevent="onReset" v-if="show">
 
       <b-form-group
         id="titleGroup"
@@ -55,11 +55,19 @@
       </b-form-group>
 
       <b-form-group id="typeGroup" label="Tyyppi:" label-for="type">
-        <b-form-select id="type" :options="discs" required v-model="form.type" />
+        <b-form-select id="type" :options="discs" required v-model="form.type">
+            <template slot="first">
+              <option :value="null" disabled>-- Valitse kiekon tyyppi --</option>
+            </template>
+        </b-form-select>
       </b-form-group>
 
       <b-form-group id="conditionGroup" label="Kunto:" label-for="condition">
-        <b-form-select id="condition" :options="conditions" required v-model="form.condition" />
+        <b-form-select id="condition" :options="conditions" required v-model="form.condition">
+            <template slot="first">
+              <option :value="null" disabled>-- Valitse kuntoluokitus --</option>
+            </template>
+        </b-form-select>
       </b-form-group>
 
       <b-form-group
@@ -88,6 +96,8 @@
     data() {
       return {
         form: {
+          user_id: 1,
+          main_photo_id: 1,
           title: '',
           content: '',
           brand: '',
@@ -96,18 +106,47 @@
           condition: null,
           price: ''
         },
-        discs: [{ text: 'Valitse yksi', value: null }, 'Putteri', 'Midari', 'Väylädriveri', 'Driveri', 'Pituusdriveri'],
-        conditions: [{ text: 'Valitse yksi', value: null }, 'Uusi', 'Uudenveroinen', 'Hyvä', 'Tyydyttävä', 'Huono'],
-        show: true
+        discs: [
+          { text: 'Putteri', value: 1 },
+          { text: 'Midari', value: 2 },
+          { text: 'Väylädriveri', value: 3 },
+          { text: 'Driveri', value: 4 },
+          { text: 'Pituusdriveri', value: 5 },
+          ],
+        conditions: [
+          { text: 'Uusi', value: 1 },
+          { text: 'Uudenveroinen', value: 2 },
+          { text: 'Hyvä', value: 3 },
+          { text: 'Tyydyttävä', value: 4 },
+          { text: 'Huono', value: 5 },
+          ],
+        show: true,
+        edit: false
       }
     },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-        alert(JSON.stringify(this.form))
+      onSubmit() {
+        console.log(JSON.stringify(this.form));
+        if (this.edit) {
+          console.log('Tallennetaan muutokset');
+        } else {
+          console.log('Tallennetaan uusi ilmoitus');
+          fetch('api/ilmoitus', {
+            method: 'post',
+            body: JSON.stringify(this.form),
+            headers: {
+              'Content-Type' : 'application/json'
+            }
+          })
+          .then(res => res.json())
+          .then(data => {
+            this.onReset();
+            console.log('Ilmoitus jätetty');
+          })
+          .catch(err => console.log(err));
+        }
       },
-      onReset(evt) {
-        evt.preventDefault()
+      onReset() {
         /* Reset our form values */
         this.form.title = ''
         this.form.content = ''

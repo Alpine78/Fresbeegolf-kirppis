@@ -7,7 +7,7 @@
       <b-card-text>
         {{ advert.content }}
       </b-card-text>
-      <b-button href="#" variant="primary">Näytä ilmoitus</b-button>
+      <b-button class="mb-2" variant="primary">Näytä ilmoitus</b-button>
       <b-button @click="deleteAdvert(advert.id)" variant="danger">Poista</b-button>
       <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
     </b-card>  
