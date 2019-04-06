@@ -5,6 +5,11 @@
             <div v-if="serverErrors">
                 <b-alert v-for="(value, key) in serverErrors" :key="key" show variant="danger">{{ value[0] }}</b-alert>
             </div>
+
+            <div v-if="msg">
+                <b-alert variant="success" show> {{ msg }}</b-alert>
+            </div>
+
             <form action="#" @submit.prevent="updateUserData" >
                 <div class="form-group">
                     <label for="email">Sähköposti</label>
@@ -60,6 +65,7 @@
                 city: "",
                 phonenumber: "",
                 serverErrors: "",
+                msg: "",
             }
         },
         created(){
@@ -87,7 +93,8 @@
                   phonenumber: this.phonenumber,
               })
                   .then(response => {
-                      console.log(response)
+                      this.msg = "Tiedot päivitetty"
+
                   })
                   .catch(error => {
                       this.serverErrors = Object.values(error.response.data.errors)

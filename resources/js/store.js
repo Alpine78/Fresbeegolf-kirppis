@@ -6,6 +6,7 @@ Vue.use(Vuex)
 axios.defaults.baseURL = "http://localhost:8000/api"
 
 export const store = new Vuex.Store({
+
     state:{
         token: localStorage.getItem('access_token') || null,
     },
@@ -114,8 +115,58 @@ export const store = new Vuex.Store({
                         })
                 })
             }
-
         },
-
+        fetchConversations(context){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve,reject) => {
+                    axios.get('/conversations', {
+                    })
+                        .then(response => {
+                            resolve(response)
+                        })
+                        .catch(error => {
+                            reject(error)
+                        })
+                })
+            }
+        },
+        fetchMessages(context, data){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve,reject) => {
+                    axios.get('/messages', {
+                        params: {
+                            user: data.user2,
+                        }
+                    })
+                        .then(response => {
+                            resolve(response)
+                        })
+                        .catch(error => {
+                            reject(error)
+                        })
+                })
+            }
+        },
+        sendMessage(context, data){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve, reject) => {
+                    axios.post('/sendMessage', {
+                        params: {
+                            user2: data.user2,
+                            message: data.content,
+                        }
+                    })
+                        .then( response => {
+                            resolve(response)
+                        })
+                        .catch( error => {
+                            reject(error)
+                        })
+                })
+            }
+        },
     }
 })

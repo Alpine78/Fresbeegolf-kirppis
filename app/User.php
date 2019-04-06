@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -28,4 +29,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function adverts() {
+        return $this->hasMany('App\Advert');
+    }
+
+    public function ratings() {
+        return $this->hasMany('App\Rating');
+    }
+
+    public function addresses() {
+        return $this->hasMany('App\Address');
+    }
+
+    public function chats() {
+        return $this->hasMany('App\Chat');
+    }
 }
