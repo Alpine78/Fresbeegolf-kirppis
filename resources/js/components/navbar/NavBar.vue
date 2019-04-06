@@ -9,8 +9,8 @@
         <b-collapse is-nav id="nav_collapse">
 
             <b-navbar-nav>
-                <b-nav-item><b-link :to="{ name: 'ilmoitus/3'}">Omat ilmoitukset</b-link></b-nav-item>
-                <b-nav-item href="#" disabled>Ylläpito</b-nav-item>
+                <b-nav-item><b-link :to="{ name: 'ilmoitus'}">Omat ilmoitukset</b-link></b-nav-item>
+                <b-nav-item disabled>Ylläpito</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->

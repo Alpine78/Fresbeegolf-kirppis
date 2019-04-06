@@ -33,7 +33,9 @@ class Advert extends JsonResource
                 'firstname' => $user->firstname,
                 'lastname' =>  $user->lastname,
                 'nickname' => $user->nickname,
-                'city' => $user->city
+                'city' => $user->city,
+                'email' => $user->email,
+                'phone' => $user->phonenumber
             ],
             'photo' => [
                 'main_photo_id' => $photo->id,
@@ -42,15 +44,15 @@ class Advert extends JsonResource
         ];
     }
 
-//    public function with($request)
-//    {
-//        // Palautetaan ilmoituksen mukana tietoja:
-////        Nämä tulevat yksittäisen ilmoituksen mukana.
-////
-////        $user = User::findOrFail($this->user_id);
-////
-////        return [
-////            'user' => $user
-////        ];
-//    }
+    public function with($request)
+    {
+        // Palautetaan ilmoituksen mukana tietoja:
+//        Nämä tulevat yksittäisen ilmoituksen mukana.
+//
+        $user = User::findOrFail($this->user_id);
+
+        return [
+            'user' => $user
+        ];
+    }
 }

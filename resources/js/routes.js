@@ -19,9 +19,13 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/ilmoitus/:id',
+            path: '/ilmoitus',
             name: 'ilmoitus',
-            component: AdvertBody
+            component: AdvertBody,
+            children: [
+                { path: ':id', component: AdvertBody },
+                { path: ':id/muokkaa', component: AdvertBody }                
+            ]
         },
         {
             path: '/login',

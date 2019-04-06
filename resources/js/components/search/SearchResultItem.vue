@@ -7,8 +7,8 @@
       <b-card-text>
         {{ advert.content }}
       </b-card-text>
-      <b-button class="mb-2" variant="primary">Näytä ilmoitus</b-button>
-      <b-button @click="deleteAdvert(advert.id)" variant="danger">Poista</b-button>
+      <b-button @click="showAdvert(advert.id)" class="mb-2" variant="primary">Näytä ilmoitus</b-button>
+      <b-button @click="deleteAdvert(advert.id)" class="mb-2" variant="danger">Poista</b-button>
       <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
     </b-card>  
 </template>
@@ -29,6 +29,9 @@ export default {
     }
   },
   methods: {
+    showAdvert(id) {
+      this.$router.push('ilmoitus/' + id);
+    },
     deleteAdvert(id) {
       if (confirm('Haluatko varmasti poistaa ilmoituksen?')) {
         fetch(`api/ilmoitus/${id}`, {

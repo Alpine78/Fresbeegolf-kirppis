@@ -1,17 +1,20 @@
 <template>
   <div>
     <ul>
-      <li>Ilkka Rytkönen</li>
-      <li>Kaihorannankatu 5</li>
-      <li>70420 Kuopio</li>
-      <li>ilkka@ilkkarytkonen.fi</li>
+      <li>{{ seller ? seller.firstname : '' }} {{  seller ? seller.lastname : '' }}</li>
+      <li>{{ seller ? seller.city : '' }}</li>
+      <li>{{ seller ? seller.phonenumber : '' }}</li>
+      <li>{{ seller ? seller.email : '' }}</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SellerInfo'
+  name: 'SellerInfo',
+  props: {
+    seller: {}
+  }
 }
 </script>
 
