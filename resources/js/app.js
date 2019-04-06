@@ -59,6 +59,10 @@ Vue.component('SearchResults', require('./components/search/SearchResults').defa
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const Advert = {
+    template: `<div>Advert {{ $route.params.id }}</div>`
+  }
+
  Router.beforeEach((to, from, next) => {
      if (to.matched.some(record => record.meta.requiresAuth)) {
          // this route requires auth, check if logged in

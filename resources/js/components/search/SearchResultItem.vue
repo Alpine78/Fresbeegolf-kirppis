@@ -1,14 +1,51 @@
 <template>
-  <div>
-    <search-description></search-description>
-    <search-photo></search-photo>
-    <search-info></search-info>
-  </div>
+    <b-card 
+      :title="advert.title" 
+      img-src="http://www.prodigydisc.eu/wp-content/uploads/2017/01/Prodigy-Disc-400-M3-green.png" 
+      img-alt="Image" 
+      img-top>
+      <b-card-text>
+        {{ advert.content }}
+      </b-card-text>
+      <b-button @click="showAdvert(advert.id)" class="mb-2" variant="primary">Näytä ilmoitus</b-button>
+      <b-button @click="deleteAdvert(advert.id)" class="mb-2" variant="danger">Poista</b-button>
+      <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
+    </b-card>  
 </template>
 
 <script>
+import moment from 'moment';
 export default {
-  name: 'SearchResultItem'
+  name: 'SearchResultItem',
+  props: {
+    advert: {},
+    counter: Number
+  },
+  computed: {
+    updated() {
+      // return 'test';
+      moment.locale( "fi" );
+      return moment(this.advert.updated_at).fromNow();
+    }
+  },
+  methods: {
+    showAdvert(id) {
+      this.$router.push('ilmoitus/' + id);
+    },
+    deleteAdvert(id) {
+      if (confirm('Haluatko varmasti poistaa ilmoituksen?')) {
+        fetch(`api/ilmoitus/${id}`, {
+          method: 'delete'
+        })
+        .then(res => res.json)
+        .then(data => {
+          alert('Ilmoitus poistettu!');
+          this.$emit('refreshAdverts')
+        })
+        .catch(err => console.log(err));
+      }
+    }
+  }
 }
 </script>
 

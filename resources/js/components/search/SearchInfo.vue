@@ -1,16 +1,19 @@
 <template>
   <div>
     <ul>
-      <li>Matti Mainio</li>
-      <li>Kuopio</li>
-      <li>matti@kukkarossa.fi</li>
+      <li>{{ user.firstname }} {{ user.lastname }}</li>
+      <li>{{ user.nickname }}</li>
+      <li>{{ user.city }}</li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SearchInfo'
+  name: 'SearchInfo',
+  props: {
+    user: {}
+  }
 }
 </script>
 

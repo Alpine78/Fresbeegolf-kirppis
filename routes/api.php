@@ -48,7 +48,7 @@ Route::get('ilmoitus/{id}', 'AdvertController@show');
 Route::post('ilmoitus', 'AdvertController@store');
 
 // Päivitä ilmoitus
-Route::put('ilmoitus', 'AdvertController@show');
+Route::put('ilmoitus', 'AdvertController@store');
 
 // Poista ilmoitus
 Route::delete('ilmoitus/{id}', 'AdvertController@destroy');
