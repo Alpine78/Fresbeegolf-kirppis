@@ -6,14 +6,24 @@ import Logout from './components/auth/Logout'
 import Register from './components/auth/Register'
 import FrontPage from './components/FrontPage'
 import Profile from "./components/Profile";
-import Chat from "./components/chat/ChatBody";
+import ChatList from "./components/chat/ChatList";
+import ChatBody from "./components/chat/ChatBody";
+import AdvertBody from './components/advert/AdvertBody';
+import AdvertForm from './components/advert/AdvertForm';
+
 
 
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+   // mode: 'history',
     routes: [
+        {
+            path: '/demoadvert',
+            name: 'demoadvert',
+            component: AdvertBody
+        },
         {
             path: '/kirjaudu',
             name: 'login',
@@ -32,7 +42,7 @@ const router = new VueRouter({
         },
         {
             path: '/',
-            name: 'frontpage',
+            name: 'frontPage',
             component: FrontPage
         },
         {
@@ -52,14 +62,29 @@ const router = new VueRouter({
             },
         },
         {
-            path: '/chat',
+            path: '/keskustelut',
             name: 'chat',
-            component: Chat,
+            component: ChatList,
             meta: {
                 requiresAuth: true,
             },
         },
-
+        {
+            path: '/ilmoitus',
+            name: 'ilmoitus',
+            component: AdvertForm,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/keskustelu/:userId',
+            name: 'privateChat',
+            component: ChatBody,
+            meta: {
+                requiresAuth: true,
+            },
+        }
 
     ]
 });

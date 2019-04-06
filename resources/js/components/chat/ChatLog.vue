@@ -1,17 +1,17 @@
 <template>
-    <div class="chat-log">
-        <chat-message v-for="(message,key) in messages" :key="key" :messages="message" ></chat-message>
+    <div class="chat-log" style="overflow-y: scroll; height:800px;" id="chat">
+            <div v-for="(value, key) in messages[0]" :key="key">
+            <chat-message :messages="value" :user1="messages[1]" :user2="messages[2]"></chat-message>
+            </div>
     </div>
 </template>
 
 <script>
     export default {
-        data() {
-            return{
-                messages: this.$store.state.messages
+        props: {
+            messages: {
             }
         },
-
     }
 </script>
 
@@ -20,4 +20,5 @@
     .chat-log .chat-message:nth-child(even){
         background-color: #cccccc;
     }
+
 </style>

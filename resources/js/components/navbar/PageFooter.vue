@@ -31,7 +31,7 @@
         </li>
         <li class="list-inline-item">
           <a class="btn-floating btn-dribbble mx-1">
-            <i class="fab fa-dribbble"> </i>
+            <i class="fab fa-signal"> </i>
           </a>
         </li>
       </ul>
@@ -41,8 +41,8 @@
     <!-- Footer Elements -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a href="#"> Ilkka Rytkönen, Niko Lipponen</a>
     </div>
     <!-- Copyright -->
 

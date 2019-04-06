@@ -9,16 +9,6 @@ export const store = new Vuex.Store({
 
     state:{
         token: localStorage.getItem('access_token') || null,
-        messages: [
-            {
-                message: "Hey!",
-                user: "John doe"
-            },
-            {
-                message: "Hello",
-                user: "Iiris Huotari"
-            }
-        ]
     },
     getters: {
       loggedIn(state){
@@ -32,9 +22,6 @@ export const store = new Vuex.Store({
         destroyToken(state){
             state.token = null
         },
-        pushMessage(state, message){
-            state.messages.push(message)
-        }
     },
     actions:{
         register(context, data){
@@ -128,12 +115,58 @@ export const store = new Vuex.Store({
                         })
                 })
             }
-
         },
-        addMessage(message) {
-          console.log(message);
-          store.commit('pushMessage', message)
+        fetchConversations(context){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve,reject) => {
+                    axios.get('/conversations', {
+                    })
+                        .then(response => {
+                            resolve(response)
+                        })
+                        .catch(error => {
+                            reject(error)
+                        })
+                })
+            }
         },
-
+        fetchMessages(context, data){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve,reject) => {
+                    axios.get('/messages', {
+                        params: {
+                            user: data.user2,
+                        }
+                    })
+                        .then(response => {
+                            resolve(response)
+                        })
+                        .catch(error => {
+                            reject(error)
+                        })
+                })
+            }
+        },
+        sendMessage(context, data){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve, reject) => {
+                    axios.post('/sendMessage', {
+                        params: {
+                            user2: data.user2,
+                            message: data.content,
+                        }
+                    })
+                        .then( response => {
+                            resolve(response)
+                        })
+                        .catch( error => {
+                            reject(error)
+                        })
+                })
+            }
+        },
     }
 })

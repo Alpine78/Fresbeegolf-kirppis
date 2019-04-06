@@ -7,16 +7,27 @@
 
 <script>
     export default {
-
+        props: {
+            userToId: {},
+        },
         data() {
-            return {
+            return{
                 messageText: ""
             }
         },
         methods: {
-            sendMessage() {
-                this.$store.commit('pushMessage', { message: this.messageText, user: 'John doe'})
-                this.messageText = "";
+            sendMessage: function() {
+                this.$store.dispatch('sendMessage', {
+                    content: this.messageText,
+                    user2: this.$props.userToId,
+                })
+                    .then(response =>{
+
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                    })
+                this.messageText= "";
             }
         }
     }
