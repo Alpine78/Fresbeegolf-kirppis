@@ -14,12 +14,13 @@ import AdvertForm from './components/advert/AdvertForm';
 
 Vue.use(VueRouter)
 
+
 const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/demoadvert',
-            name: 'demoadvert',
+            path: '/ilmoitus/:id',
+            name: 'ilmoitus',
             component: AdvertBody
         },
         {
@@ -60,8 +61,8 @@ const router = new VueRouter({
             },
         },
         {
-            path: '/ilmoitus',
-            name: 'ilmoitus',
+            path: '/ilmoita',
+            name: 'ilmoita',
             component: AdvertForm,
             meta: {
                 requiresAuth: true,
