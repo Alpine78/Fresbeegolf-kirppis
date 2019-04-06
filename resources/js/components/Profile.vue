@@ -93,8 +93,7 @@
                   phonenumber: this.phonenumber,
               })
                   .then(response => {
-                      this.msg = "Tiedot päivitetty",
-                      console.log(response)
+                      this.msg = "Tiedot päivitetty"
 
                   })
                   .catch(error => {

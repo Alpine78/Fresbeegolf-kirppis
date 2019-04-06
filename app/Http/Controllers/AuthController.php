@@ -93,6 +93,7 @@ class AuthController extends Controller
             'nickname'=>$request->user()->nickname,
             'address'=>$request->user()->address,
             'city'=>$request->user()->city,
+            'zipcode'=>$request->user()->zipcode,
             'phonenumber'=>$request->user()->phonenumber
         );
         return json_encode($myUser);
