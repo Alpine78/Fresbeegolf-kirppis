@@ -1,12 +1,12 @@
 <template>
     <b-container>
         <p>TERVE</p>
-        <!-- <b-link :to="{ name: 'demoadvert'}">
+        <b-link :to="{ name: 'demoadvert'}">
         <search-result-item></search-result-item>
-        </b-link> -->
-        <h3>Tässäpä uusimmat ilmoitukset</h3>
-        <search-results></search-results>
-    </b-container>
+        <p>lorem*5</p>
+
+        </b-link>
+    </div>
 </template>
 
 <script>

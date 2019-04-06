@@ -10,4 +10,10 @@ class Chat extends Model
     //
     use SoftDeletes;
     protected $dates = ['deleted_at'];
+
+    protected $fillable = ['content', 'user_2', 'user_id'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
