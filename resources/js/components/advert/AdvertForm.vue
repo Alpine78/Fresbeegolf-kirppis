@@ -84,6 +84,25 @@
           placeholder="Kirjoita kiekon hinta" />
       </b-form-group>
 
+      <b-form-group
+        id="photosGroup"
+        label="Kuvat:"
+        label-for="photos"
+        description="Kiekon kuvat (jpg, png tai gif)">            
+
+      <template>
+        <b-form-file
+          id="photos"
+          multiple
+          accept="image/jpeg, image/png, image/gif"
+          v-model="form.photos"
+          :state="Boolean(form.photos)"
+          placeholder="Lisää kuvat..."
+          drop-placeholder="Pudota kuvat tähän..."
+        ></b-form-file>
+        </template>
+      </b-form-group>
+
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
@@ -104,7 +123,8 @@
           model: '',
           type: null,
           condition: null,
-          price: ''
+          price: '',
+          photos: []
         },
         discs: [
           { text: 'Putteri', value: 1 },
@@ -121,7 +141,7 @@
           { text: 'Huono', value: 5 },
           ],
         show: true,
-        edit: false
+        edit: false,
       }
     },
     methods: {
@@ -155,6 +175,7 @@
         this.form.type = null
         this.form.condition = null
         this.form.price = ''
+        this.form.photos = []
         /* Trick to reset/clear native browser form validation state */
         this.show = false
         this.$nextTick(() => {

@@ -52,3 +52,23 @@ Route::put('ilmoitus', 'AdvertController@store');
 
 // Poista ilmoitus
 Route::delete('ilmoitus/{id}', 'AdvertController@destroy');
+
+
+// Kaikki valokuvat
+Route::get('valokuvat', 'PhotoController@index');
+
+// Yhden ilmoituksen valokuvat
+Route::get('valokuvat/{id}', 'PhotoController@advertphotos');
+
+
+// Yksi valokuva
+Route::get('valokuva/{id}', 'PhotoController@show');
+
+// Luo valokuva
+Route::post('valokuva', 'PhotoController@store');
+
+// Päivitä valokuva
+Route::put('valokuva', 'PhotoController@store');
+
+// Poista valokuva
+Route::delete('valokuva/{id}', 'PhotoController@destroy');
