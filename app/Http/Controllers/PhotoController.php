@@ -41,6 +41,9 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $uploadedPhotos = $request->photo;
+        return response(['fileexension'=>$uploadedPhotos->extension]);
         // Edwin Diazin ohje
         // 209. Persisting user with photo part 1
 
@@ -69,6 +72,8 @@ class PhotoController extends Controller
 //                $data[] = $name;
 //            }
 //        }
+
+
     }
 
     /**

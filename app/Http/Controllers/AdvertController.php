@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Advert as AdvertResource;
+use App\Http\Resources\Photo;
 use Illuminate\Http\Request;
 use App\Advert;
 
@@ -43,6 +44,7 @@ class AdvertController extends Controller
     public function store(Request $request)
     {
         //
+
         $advert = $request->isMethod('put') ?
             Advert::findOrFail($request->advert_id) : new Advert;
 
@@ -62,22 +64,18 @@ class AdvertController extends Controller
         if($advert->save()) {
 //            return new AdvertResource($advert);
             $newAdvert = new AdvertResource($advert);
-//            $this->savePhotos($newAdvert->id, $request, $request->method());
-            return $newAdvert;
+
+//            return $request->input('photos');
+
+            return $newAdvert->id();
         }
     }
 
-    public function savePhotos($newAdvert, $method)
-    {
-        if ($method=='put')
-        {
-            echo 'Puttia kuvalle';
-        }
-        else
-        {
-            echo 'Uusi kuva';
-        }
-    }
+//    public function savePhotos($advert_id, $request)
+//    {
+//        $photos = $request->photos();
+//        return $photos;
+//    }
 
     /**
      * Display the specified resource.

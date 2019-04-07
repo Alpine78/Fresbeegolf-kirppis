@@ -99,6 +99,7 @@
           :state="Boolean(form.photos)"
           placeholder="Lisää kuvat..."
           drop-placeholder="Pudota kuvat tähän..."
+          @change="fieldChange"
         ></b-form-file>
         </template>
       </b-form-group>
@@ -142,9 +143,16 @@
           ],
         show: true,
         edit: false,
+        files: []
       }
     },
     methods: {
+      fieldChange(e) {
+        this.files = [];
+        console.log(e);
+        this.files.push(e.target.files);
+        console.log(this.files);
+      },
       onSubmit() {
         console.log(JSON.stringify(this.form));
         if (this.edit) {
@@ -160,22 +168,22 @@
           })
           .then(res => res.json())
           .then(data => {
-            this.savePhotos(this.form.photos, data);
-            this.onReset();
+            this.savePhotos( data);
+            // this.onReset();
             console.log('Ilmoitus jätetty');
           })
           .catch('Tekstitallennuksen virhe: ', err => console.log(err));
         }
       },
-      savePhotos(photos, data) {
-        console.log('Tuleeko kuvia? ', photos);
+      savePhotos(data) {
+        console.log('Tuleeko kuvia? ', this.files);
         console.log('Dataa, advert id? ', data.data.id);
         var fd = new FormData();
         var url = 'api/valokuva';
-        for (var photo in photos) {
-          fd.append(photo, photos[photo]);
-        }
-
+        // for (var photo in this.files) {
+        //   fd.append('photo', this.files[photo]);
+        // }
+        fd.append('photo', this.files[0]);
         console.log('Äfdee ', fd);
         fetch(url, {
           method: 'post',
