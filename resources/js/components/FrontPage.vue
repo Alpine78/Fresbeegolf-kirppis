@@ -6,7 +6,7 @@
         <p>lorem*5</p>
 
         </b-link>
-    </div>
+    </b-container>
 </template>
 
 <script>

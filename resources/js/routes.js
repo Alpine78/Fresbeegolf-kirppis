@@ -75,8 +75,8 @@ const router = new VueRouter({
             },
         },
         {
-            path: '/ilmoitus',
-            name: 'ilmoitus',
+            path: '/ilmoita',
+            name: 'ilmoita',
             component: AdvertForm,
             meta: {
                 requiresAuth: true,
