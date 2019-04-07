@@ -46,6 +46,8 @@ class AdvertController extends Controller
         $advert = $request->isMethod('put') ?
             Advert::findOrFail($request->advert_id) : new Advert;
 
+
+
         $advert->id = $request->input('advert_id');
         $advert->user_id = $request->input('user_id');
         $advert->title = $request->input('title');
@@ -58,7 +60,22 @@ class AdvertController extends Controller
         $advert->main_photo_id = $request->input('main_photo_id');
 
         if($advert->save()) {
-            return new AdvertResource($advert);
+//            return new AdvertResource($advert);
+            $newAdvert = new AdvertResource($advert);
+//            $this->savePhotos($newAdvert->id, $request, $request->method());
+            return $newAdvert;
+        }
+    }
+
+    public function savePhotos($newAdvert, $method)
+    {
+        if ($method=='put')
+        {
+            echo 'Puttia kuvalle';
+        }
+        else
+        {
+            echo 'Uusi kuva';
         }
     }
 

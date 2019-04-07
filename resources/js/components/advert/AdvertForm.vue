@@ -151,7 +151,7 @@
           console.log('Tallennetaan muutokset');
         } else {
           console.log('Tallennetaan uusi ilmoitus');
-          fetch('api/ilmoitus', {
+          let result = fetch('api/ilmoitus', {
             method: 'post',
             body: JSON.stringify(this.form),
             headers: {
@@ -160,11 +160,32 @@
           })
           .then(res => res.json())
           .then(data => {
+            this.savePhotos(this.form.photos, data);
             this.onReset();
             console.log('Ilmoitus jätetty');
           })
-          .catch(err => console.log(err));
+          .catch('Tekstitallennuksen virhe: ', err => console.log(err));
         }
+      },
+      savePhotos(photos, data) {
+        console.log('Tuleeko kuvia? ', photos);
+        console.log('Dataa, advert id? ', data.data.id);
+        var fd = new FormData();
+        var url = 'api/valokuva';
+        for (var photo in photos) {
+          fd.append(photo, photos[photo]);
+        }
+
+        console.log('Äfdee ', fd);
+        fetch(url, {
+          method: 'post',
+          body: fd
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('Kuvat lisättty: ', data);
+        })
+        .catch('Kuvatallennuksen virhe: ', err => console.log(err));
       },
       onReset() {
         /* Reset our form values */

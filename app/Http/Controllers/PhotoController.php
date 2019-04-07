@@ -41,7 +41,34 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Edwin Diazin ohje
+        // 209. Persisting user with photo part 1
+
+//        $input = $request->all();
+//
+//        if ($file = $request->file('photo_id')) {
+//            $name = time() . $file->getClientOriginalName();
+//            $file->move('images', $name);
+//            $photo = Photo::create(['file'=>$name]);
+//            $input['photo_id'] = $photo->id;
+//        }
+
+        // https://appdividend.com/2018/02/05/laravel-multiple-images-upload-tutorial/
+
+//        $this->validate($request, [
+//           'filename' => 'required',
+//           'filename.*' =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
+//        ]);
+
+//        if ($request->hasFile('filename'))
+//        {
+//            foreach ($request->file('filename') as $image)
+//            {
+//                $name = time() . $image->getClientOriginalName();
+//                $image->move(public_path().'/images/', $name);
+//                $data[] = $name;
+//            }
+//        }
     }
 
     /**
