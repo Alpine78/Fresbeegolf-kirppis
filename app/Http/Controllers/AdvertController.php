@@ -48,8 +48,6 @@ class AdvertController extends Controller
         $advert = $request->isMethod('put') ?
             Advert::findOrFail($request->advert_id) : new Advert;
 
-
-
         $advert->id = $request->input('advert_id');
         $advert->user_id = $request->input('user_id');
         $advert->title = $request->input('title');
@@ -67,7 +65,7 @@ class AdvertController extends Controller
 
 //            return $request->input('photos');
 
-            return $newAdvert->id();
+            return $newAdvert;
         }
     }
 

@@ -169,7 +169,7 @@
           .then(res => res.json())
           .then(data => {
             console.log('Ilmoitus jätetty. Yritetään kuvien tallennusta');
-            // this.savePhotos(data);
+            this.savePhotos(data);
             // this.onReset();
           })
           .catch('Tekstitallennuksen virhe: ', err => console.log(err));
@@ -180,16 +180,15 @@
         console.log('Dataa, advert id? ', data.data.id);
         var fd = new FormData();
         var url = 'api/valokuva';
-        // for (var photo in this.files) {
-        //   fd.append('photo', this.files[photo]);
-        // }
-        fd.append('photo', this.files[0]);
+        for (var photo in this.files) {
+          fd.append('photo', this.files[photo]);
+        }
+        fd.append('advert_id', data.data.id);
         console.log('Äfdee ', fd);
         fetch(url, {
           method: 'post',
           body: fd
         })
-        .then(res => res.json())
         .then(data => {
           console.log('Kuvat lisättty: ', data);
         })
