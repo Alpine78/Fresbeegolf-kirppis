@@ -168,9 +168,9 @@
           })
           .then(res => res.json())
           .then(data => {
-            this.savePhotos( data);
+            console.log('Ilmoitus jätetty. Yritetään kuvien tallennusta');
+            // this.savePhotos(data);
             // this.onReset();
-            console.log('Ilmoitus jätetty');
           })
           .catch('Tekstitallennuksen virhe: ', err => console.log(err));
         }
