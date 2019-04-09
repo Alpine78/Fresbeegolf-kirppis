@@ -76,7 +76,13 @@ class PhotoController extends Controller
 //        }
 
         $uploadedPhotos = $request->photo;
-        $uploadedPhotos->store('dummy');
+        //$uploadedPhotos->store('dummy');
+        dd($uploadedPhotos);
+        foreach ($uploadedPhotos as $uploadedPhoto)
+        {
+            $uploadedPhoto->store('kuva');
+        }
+
         return response(['status'=>'success'], 200);
 
 
