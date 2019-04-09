@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Photo;
 use App\Http\Resources\Photo as PhotoResource;
+use Illuminate\Http\UploadedFile;
 
 class PhotoController extends Controller
 {
@@ -75,13 +76,38 @@ class PhotoController extends Controller
 //            }
 //        }
 
-        $uploadedPhotos = $request->photo;
+        return $request->photos;
+
+        $uploadedPhotos = $request->photos;
         //$uploadedPhotos->store('dummy');
-        dd($uploadedPhotos);
-        foreach ($uploadedPhotos as $uploadedPhoto)
-        {
-            $uploadedPhoto->store('kuva');
+//        dd($uploadedPhotos);
+
+        $file = $request->file('photos');
+        $file = $request->photos;
+        $path = $request->photos->store('images');
+
+//
+//        $input = $request->all();
+//        foreach ($input as $item)
+//        {
+//            $file = $request->file('photos');
+//            $file = $request->photos;
+//            $path = $request->photos->store('images');
+
+//            if ($input = $request->file('photos')) {
+////                $input->store('teststiore');
+////                $name = time() . $input->getClientOriginalName();
+////                $input->move('images', $name);
+////                $photo = Photo::create(['file'=>$name]);
+////                $input['photo_id'] = $photo->id;
+//
+//            }
         }
+
+//        foreach ($uploadedPhotos as $uploadedPhoto)
+//        {
+//            $uploadedPhoto->store('kuva');
+//        }
 
         return response(['status'=>'success'], 200);
 

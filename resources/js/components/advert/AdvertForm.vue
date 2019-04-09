@@ -148,10 +148,36 @@
     },
     methods: {
       fieldChange(e) {
-        this.files = [];
-        console.log(e);
-        this.files.push(e.target.files);
-        console.log(this.files);
+        // this.files = [];
+        // // this.files.push(e.target.files);
+        // const files = e.target.files;
+        var myphotos = e.target.files;
+        console.log(myphotos);
+        
+        myphotos.forEach(photo => {
+            var file = photo;
+            var reader = new FileReader();
+            reader.onloadend = function() {
+              console.log('RESULT', reader.result)
+            }
+            reader.readAsDataURL(file);
+        })
+
+
+        // // Muutetaan tiedostot base64-muotoon
+        // for (var i = 0; i < e.target.files.length; i++) {
+        //   // var file = files[fileIndex];
+        //   var file = e.target.files[i];
+        //   console.log('File ', file);
+
+        //   var reader = new FileReader();
+        //   reader.onloadend = function() {
+        //   console.log('Result', reader.result);
+        //   reader.readAsDataURL(file);
+        //   }
+
+        // }
+
       },
       onSubmit() {
         console.log(JSON.stringify(this.form));
@@ -178,12 +204,21 @@
       savePhotos(data) {
         console.log('Tuleeko kuvia? ', this.files);
         console.log('Dataa, advert id? ', data.data.id);
+
+        // let file = this.files[0];
+        // let reader = new FileReader();
+        // reader.onloadend = function() {
+        //   console.log('Result', reader.result);
+        // }
+        // reader.readAsDataURL(file);
+
+        // Eka viritys
         var fd = new FormData();
         var url = 'api/valokuva';
-        for (var photo in this.files) {
-          fd.append('photo', this.files[photo]);
+        for (var photoIndex in this.files) {
+          fd.append('photos', this.files[photoIndex]);
         }
-        fd.append('advert_id', data.data.id);
+        // fd.append('advert_id', data.data.id);
         console.log('Äfdee ', fd);
         fetch(url, {
           method: 'post',
