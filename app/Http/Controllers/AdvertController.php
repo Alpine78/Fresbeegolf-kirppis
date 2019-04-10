@@ -59,9 +59,12 @@ class AdvertController extends Controller
         $advert->price = $request->input('price');
         $advert->main_photo_id = $request->input('main_photo_id');
 
+        $photo = $request->input('photo');
+
         if($advert->save()) {
 //            return new AdvertResource($advert);
             $newAdvert = new AdvertResource($advert);
+            $this->savePhotos($photo, $advert->id);
 
 //            return $request->input('photos');
 
@@ -69,11 +72,13 @@ class AdvertController extends Controller
         }
     }
 
-//    public function savePhotos($advert_id, $request)
-//    {
-//        $photos = $request->photos();
-//        return $photos;
-//    }
+    public function savePhotos($photo, $advertId)
+    {
+        dd($photo);
+        $path = $photo->store('images');
+        $newPhoto = new Photo($photo);
+        $photo->move('images');
+    }
 
     /**
      * Display the specified resource.

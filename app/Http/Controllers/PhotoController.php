@@ -102,7 +102,7 @@ class PhotoController extends Controller
 ////                $input['photo_id'] = $photo->id;
 //
 //            }
-        }
+        //}
 
 //        foreach ($uploadedPhotos as $uploadedPhoto)
 //        {

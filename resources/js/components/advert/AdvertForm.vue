@@ -85,23 +85,25 @@
       </b-form-group>
 
       <b-form-group
-        id="photosGroup"
+        id="photoGroup"
         label="Kuvat:"
-        label-for="photos"
-        description="Kiekon kuvat (jpg, png tai gif)">            
+        label-for="photo"
+        description="Kiekon kuva (jpg, png tai gif)">            
 
+          <!-- Varalla, jos lisätään paljon kuvia. Ei toimi vielä -->
+          <!-- multiple -->
+          <!-- v-model="form.photo" -->
       <template>
         <b-form-file
-          id="photos"
-          multiple
+          id="photo"
           accept="image/jpeg, image/png, image/gif"
-          v-model="form.photos"
-          :state="Boolean(form.photos)"
-          placeholder="Lisää kuvat..."
-          drop-placeholder="Pudota kuvat tähän..."
+          :state="Boolean(form.photo)"
+          placeholder="Lisää kuva..."
+          drop-placeholder="Pudota kuva tähän..."
           @change="fieldChange"
         ></b-form-file>
         </template>
+        <b-img :src="form.photo" fluid alt="Responsive image"></b-img>
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
@@ -125,7 +127,7 @@
           type: null,
           condition: null,
           price: '',
-          photos: []
+          photo: ''
         },
         discs: [
           { text: 'Putteri', value: 1 },
@@ -148,33 +150,42 @@
     },
     methods: {
       fieldChange(e) {
+        var vm = this;
         // this.files = [];
         // // this.files.push(e.target.files);
         // const files = e.target.files;
-        var myphotos = e.target.files;
-        console.log(myphotos);
+        // var myphotos = e.target.files;
+        // console.log(myphotos);
         
-        myphotos.forEach(photo => {
-            var file = photo;
-            var reader = new FileReader();
-            reader.onloadend = function() {
-              console.log('RESULT', reader.result)
-            }
-            reader.readAsDataURL(file);
-        })
+        // myphotos.forEach(photo => {
+        //     var file = photo;
+        //     var reader = new FileReader();
+        //     reader.onloadend = function() {
+        //       console.log('RESULT', reader.result)
+        //     }
+        //     reader.readAsDataURL(file);
+        // })
 
 
         // // Muutetaan tiedostot base64-muotoon
         // for (var i = 0; i < e.target.files.length; i++) {
         //   // var file = files[fileIndex];
-        //   var file = e.target.files[i];
         //   console.log('File ', file);
 
-        //   var reader = new FileReader();
-        //   reader.onloadend = function() {
-        //   console.log('Result', reader.result);
-        //   reader.readAsDataURL(file);
-        //   }
+          console.log(e.target.files[0]);
+          let file = e.target.files[0];
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = e => {
+            console.log(e);
+            this.form.photo = e.target.result;
+          }
+          // reader.onloadend = function() {
+          // console.log('Result', reader.result);
+          // vm.photo = reader.result;
+          // }
+          // var temp = reader.readAsDataURL(file);
+          // console.log('this.photo ', vm.photo);
 
         // }
 
@@ -195,7 +206,7 @@
           .then(res => res.json())
           .then(data => {
             console.log('Ilmoitus jätetty. Yritetään kuvien tallennusta');
-            this.savePhotos(data);
+            // this.savePhotos(data);
             // this.onReset();
           })
           .catch('Tekstitallennuksen virhe: ', err => console.log(err));
