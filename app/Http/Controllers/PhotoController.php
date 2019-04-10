@@ -64,7 +64,6 @@ class PhotoController extends Controller
 //           'photo.*' =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
 //        ]);
 
-        $advert_id = $request->input('advert_id');
 
 //        if ($request->hasFile('photo'))
 //        {
@@ -76,15 +75,15 @@ class PhotoController extends Controller
 //            }
 //        }
 
-        return $request->photos;
-
-        $uploadedPhotos = $request->photos;
-        //$uploadedPhotos->store('dummy');
-//        dd($uploadedPhotos);
-
-        $file = $request->file('photos');
-        $file = $request->photos;
-        $path = $request->photos->store('images');
+//        return $request->photos;
+//
+//        $uploadedPhotos = $request->photos;
+//        //$uploadedPhotos->store('dummy');
+////        dd($uploadedPhotos);
+//
+//        $file = $request->file('photos');
+//        $file = $request->photos;
+//        $path = $request->photos->store('images');
 
 //
 //        $input = $request->all();
@@ -108,6 +107,11 @@ class PhotoController extends Controller
 //        {
 //            $uploadedPhoto->store('kuva');
 //        }
+
+        $advert_id = $request->input('advert_id');
+
+
+
 
         return response(['status'=>'success'], 200);
 

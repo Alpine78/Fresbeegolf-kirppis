@@ -6,6 +6,7 @@ use App\Http\Resources\Advert as AdvertResource;
 use App\Http\Resources\Photo;
 use Illuminate\Http\Request;
 use App\Advert;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdvertController extends Controller
 {
@@ -45,6 +46,9 @@ class AdvertController extends Controller
     {
         //
 
+
+
+
         $advert = $request->isMethod('put') ?
             Advert::findOrFail($request->advert_id) : new Advert;
 
@@ -60,13 +64,18 @@ class AdvertController extends Controller
         $advert->main_photo_id = $request->input('main_photo_id');
 
         $photo = $request->input('photo');
+        $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+        \Image::make($request->photo)->save(public_path('images/').$name);
+        $request->merge(['photo' => $name]);
+//        $userPhoto = public_path('img/profile/').$currentPhoto;
 
         if($advert->save()) {
 //            return new AdvertResource($advert);
             $newAdvert = new AdvertResource($advert);
-            $this->savePhotos($photo, $advert->id);
+//            $this->savePhotos($photo, $advert->id);
 
 //            return $request->input('photos');
+
 
             return $newAdvert;
         }
@@ -74,10 +83,9 @@ class AdvertController extends Controller
 
     public function savePhotos($photo, $advertId)
     {
-        dd($photo);
-        $path = $photo->store('images');
-        $newPhoto = new Photo($photo);
-        $photo->move('images');
+//        dd($photo);
+
+
     }
 
     /**
