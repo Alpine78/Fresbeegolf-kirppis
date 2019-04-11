@@ -5,9 +5,8 @@
     <!-- Pääkuva voidaan esittää varmaan suoraan. Eli advert-photon voisi heivata pois -->
     <!-- <advert-photo></advert-photo> -->
     <div>
-      <b-img :src="'/' + advert.photo" alt="Fluid-grow image" width="100%"/>
+      <b-img :src="'/' + advert.photo" fluid-grow alt="Kiekon kuva" width="50%"/>
     </div>
-    {{ advert.photo }}
     <photo-gallery></photo-gallery>
     <!-- <advert-description></advert-description> -->
     <div>
