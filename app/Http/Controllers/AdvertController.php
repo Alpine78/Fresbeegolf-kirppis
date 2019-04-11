@@ -68,6 +68,7 @@ class AdvertController extends Controller
         \Image::make($request->photo)->save(public_path('images/').$name);
         $request->merge(['photo' => $name]);
 //        $userPhoto = public_path('img/profile/').$currentPhoto;
+        $advert->photo = 'images/' . $name;
 
         if($advert->save()) {
 //            return new AdvertResource($advert);

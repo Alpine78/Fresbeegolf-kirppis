@@ -28,6 +28,7 @@ class Advert extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'updated_at' => $this->updated_at,
+            'photo' => $this->photo,
             'user' => [
                 'user_id' => $user->id,
                 'firstname' => $user->firstname,
@@ -37,7 +38,7 @@ class Advert extends JsonResource
                 'email' => $user->email,
                 'phone' => $user->phonenumber
             ],
-            'photo' => [
+            'photo_gallery' => [
                 'main_photo_id' => $photo->id,
                 'main_photo_url' => $photo->photo_url
             ]
