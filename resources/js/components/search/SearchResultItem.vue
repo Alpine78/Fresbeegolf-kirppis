@@ -1,8 +1,10 @@
 <template>
     <b-card 
       :title="advert.title" 
-      img-src="http://www.prodigydisc.eu/wp-content/uploads/2017/01/Prodigy-Disc-400-M3-green.png" 
-      img-alt="Image" 
+      :img-src="'/' + advert.photo" 
+      img-alt="Kiekon kuva" 
+      @click="showAdvert(advert.id)"
+      :style="{ cursor: 'pointer'}"
       img-top>
       <b-card-text>
         {{ advert.content }}
