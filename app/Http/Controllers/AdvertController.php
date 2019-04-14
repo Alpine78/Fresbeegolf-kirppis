@@ -19,7 +19,7 @@ class AdvertController extends Controller
     {
         // Ilmoitukset
         $adverts = Advert::orderBy('updated_at', 'desc')->paginate(15);
-            //->get();
+        //->get();
             //->paginate(15);
 
         // Palauta kaikki resurssina
@@ -45,9 +45,6 @@ class AdvertController extends Controller
     public function store(Request $request)
     {
         //
-
-
-
 
         $advert = $request->isMethod('put') ?
             Advert::findOrFail($request->advert_id) : new Advert;

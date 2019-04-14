@@ -170,5 +170,3 @@ export const store = new Vuex.Store({
         },
     }
 })
-
-export default Store;
