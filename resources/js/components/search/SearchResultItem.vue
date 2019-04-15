@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     showAdvert(id) {
-      this.$router.push('ilmoitus/' + id);
+      this.$router.push('/ilmoitus/' + id);
     },
     deleteAdvert(id) {
       if (confirm('Haluatko varmasti poistaa ilmoituksen?')) {
