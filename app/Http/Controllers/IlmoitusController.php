@@ -73,7 +73,7 @@ class IlmoitusController extends Controller
 
         if($advert->save()) {
 //            return new AdvertResource($advert);
-            $newAdvert = new AdvertResource($advert);
+            $newAdvert = new IlmoitusResource($advert);
 //            $this->savePhotos($photo, $advert->id);
 
 //            return $request->input('photos');
@@ -102,7 +102,7 @@ class IlmoitusController extends Controller
         $advert = Advert::findOrFail($id);
 
         // Palauta yksi ilmoitus resurssina
-        return new AdvertResource($advert);
+        return new IlmoitusResource($advert);
     }
 
     /**
@@ -140,7 +140,7 @@ class IlmoitusController extends Controller
         $advert = Advert::findOrFail($id);
 
         if($advert->delete()) {
-            return new AdvertResource($advert);
+            return new IlmoitusResource($advert);
         }
     }
 }
