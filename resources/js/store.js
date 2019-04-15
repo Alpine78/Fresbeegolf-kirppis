@@ -9,11 +9,15 @@ export const store = new Vuex.Store({
 
     state:{
         token: localStorage.getItem('access_token') || null,
+        userdetails: {}
     },
     getters: {
       loggedIn(state){
           return state.token !== null
       },
+      userdetails: state => {
+          return state.userdetails;
+      }
     },
     mutations: {
         retrieveToken(state, token){
@@ -21,6 +25,10 @@ export const store = new Vuex.Store({
         },
         destroyToken(state){
             state.token = null
+        },
+        setUserData: (state, data) => {
+            console.log(data);
+            state.userdetails = data;
         },
     },
     actions:{
@@ -86,6 +94,8 @@ export const store = new Vuex.Store({
                     })
                         .then( response => {
                             resolve(response)
+                            context.commit('setUserData', response.data);
+                            // console.log(response);
                         })
                         .catch(error => {
                             reject(error)
