@@ -7,13 +7,14 @@
     <div>
       <b-img :src="'/' + advert.photo" fluid-grow alt="Kiekon kuva" width="50%"/>
     </div>
-    <photo-gallery></photo-gallery>
+    <!-- <photo-gallery></photo-gallery> -->
     <!-- <advert-description></advert-description> -->
     <div>
       {{ advert.content}}
     </div>
     <seller-info :seller="seller"></seller-info>
     <advert-messages></advert-messages>
+    {{ loggedIn }}
   </b-container>
 </template>
 
@@ -49,6 +50,13 @@ export default {
   created() {
     if (this.$route.params.id) {
       this.getAdvertDetails();
+    }
+  },
+  computed: {
+      loggedIn() {
+    //   return this.$store.getters.loggedIn
+    let juuseri = localStorage.getItem('access_token');
+    return juuseri;
     }
   }
 }
