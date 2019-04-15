@@ -58,7 +58,7 @@ export default {
         console.log(this.current_page_url);
       }
       let vm = this;
-      page_url = page_url || 'api/ilmoitukset';
+      page_url = page_url || 'api/ilmoitus';
       fetch(page_url)
       .then(res => res.json())
       .then(res => {
