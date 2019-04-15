@@ -7,7 +7,7 @@
     <div>
       <b-img :src="'/' + advert.photo" fluid-grow alt="Kiekon kuva" width="50%"/>
     </div>
-    <photo-gallery></photo-gallery>
+    <!-- <photo-gallery></photo-gallery> -->
     <!-- <advert-description></advert-description> -->
     <div>
       {{ advert.content}}
@@ -35,6 +35,8 @@ export default {
   },
   methods: {
     getAdvertDetails() {
+        // TODO Vaihda tähän Vuex-metodi, joka on jo valmis
+        // this.$store.dispatch('getAdvertDetails', this.advert_id);
       const url = '/api/ilmoitus/' + this.id;
       fetch(url)
         .then(res => res.json())
@@ -49,6 +51,11 @@ export default {
   created() {
     if (this.$route.params.id) {
       this.getAdvertDetails();
+    }
+  },
+  computed: {
+    ownAdvert() {
+      return this.advert.user_id === this.$store.getters.userdetails.id;
     }
   }
 }

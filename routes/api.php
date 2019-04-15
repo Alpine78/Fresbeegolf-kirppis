@@ -31,19 +31,38 @@ Route::middleware('auth:api')->post('/sendMessage', 'ChatController@sendMessage'
 Route::middleware('auth:api')->get('/conversations', 'ChatController@fetchConversations');
 
 // Kaikki ilmoitukset
-Route::get('ilmoitukset', 'AdvertController@index');
+Route::get('advert', 'AdvertController@index');
 
 // Yksi ilmoitus
-Route::get('ilmoitus/{id}', 'AdvertController@show');
+Route::get('advert/{id}', 'AdvertController@show');
 
 // Luo ilmoitus
-Route::post('ilmoitus', 'AdvertController@store');
+Route::post('advert', 'AdvertController@store');
 
 // Päivitä ilmoitus
-Route::put('ilmoitus', 'AdvertController@store');
+Route::put('advert', 'AdvertController@store');
 
 // Poista ilmoitus
-Route::delete('ilmoitus/{id}', 'AdvertController@destroy');
+Route::delete('advert/{id}', 'AdvertController@destroy');
+
+///////////////////////////////////////
+
+// Kaikki ilmoitukset
+Route::get('ilmoitus', 'IlmoitusController@index');
+
+// Yksi ilmoitus
+Route::get('ilmoitus/{id}', 'IlmoitusController@show');
+
+// Luo ilmoitus
+Route::post('ilmoitus', 'IlmoitusController@store');
+
+// Päivitä ilmoitus
+Route::put('ilmoitus', 'IlmoitusController@store');
+
+// Poista ilmoitus
+Route::delete('ilmoitus/{id}', 'IlmoitusController@destroy');
+
+///////////////////////////////////////
 
 
 // Kaikki valokuvat

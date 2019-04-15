@@ -26,9 +26,17 @@ const router = new VueRouter({
             component: AdvertBody,
             children: [
                 { path: ':id', component: AdvertBody },
-                { path: ':id/muokkaa', component: AdvertBody }                
             ]
         },
+        // {
+        //     path: '/muokkaa',
+        //     name: 'muokkaa',
+        //     component: AdvertBody,
+        //     children: [
+        //         { path: ':id', component: AdvertForm },
+        //         { path: ':id/muokkaa', component: AdvertForm }                
+        //     ]
+        // },
         {
             path: '/kirjaudu',
             name: 'login',
@@ -81,6 +89,9 @@ const router = new VueRouter({
             meta: {
                 requiresAuth: true,
             },
+            children: [
+                { path: ':id', component: AdvertBody },
+            ]
         },
         {
             path: '/keskustelu/:userId',

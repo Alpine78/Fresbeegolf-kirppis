@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Resources\Json\JsonResource;
 use App\User;
 use App\Photo;
-use Illuminate\Http\Resources\Json\JsonResource;
 
-class Advert extends JsonResource
+class Ilmoitus extends JsonResource
 {
     /**
      * Transform the resource into an array.
