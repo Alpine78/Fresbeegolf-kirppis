@@ -96,6 +96,7 @@
       <template>
         <b-form-file
           id="photo"
+          required
           accept="image/jpeg, image/png, image/gif"
           :state="Boolean(form.photo)"
           placeholder="Lisää kuva..."
@@ -103,7 +104,7 @@
           @change="fieldChange"
         ></b-form-file>
         </template>
-        <b-img :src="form.photo" fluid alt="Responsive image"></b-img>
+        <b-img v-if="form.photo" :src="form.photo" fluid alt="Responsive image"></b-img>
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
@@ -207,7 +208,8 @@
           .then(data => {
             console.log('Ilmoitus jätetty. Yritetään kuvien tallennusta');
             // this.savePhotos(data);
-            // this.onReset();
+            this.onReset();
+            this.$router.push({name: 'frontPage'});
           })
           .catch('Tekstitallennuksen virhe: ', err => console.log(err));
         }

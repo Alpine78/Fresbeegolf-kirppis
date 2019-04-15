@@ -9,8 +9,9 @@
       <b-card-text>
         {{ advert.content }}
       </b-card-text>
+      {{ ownAdvert }}
       <b-button @click="showAdvert(advert.id)" class="mb-2" variant="primary">Näytä ilmoitus</b-button>
-      <b-button @click="deleteAdvert(advert.id)" class="mb-2" variant="danger">Poista</b-button>
+      <b-button v-if="ownAdvert" @click="deleteAdvert(advert.id)" class="mb-2" variant="danger">Poista</b-button>
       <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
     </b-card>  
 </template>
@@ -28,6 +29,14 @@ export default {
       // return 'test';
       moment.locale( "fi" );
       return moment(this.advert.updated_at).fromNow();
+    },
+    userdetails() {
+        return this.$store.getters.userdetails;
+    },
+    ownAdvert() {
+      // console.log(this.advert.user_id);
+      // console.log(this.$store.getters.userdetails.id);
+      return this.advert.user.user_id === this.$store.getters.userdetails.id;
     }
   },
   methods: {
