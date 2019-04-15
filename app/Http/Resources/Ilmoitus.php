@@ -27,6 +27,11 @@ class Ilmoitus extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
+            'brand' => $this->brand,
+            'model' => $this->model,
+            'type' => $this->type,
+            'condition' => $this->condition,
+            'price' => $this->price,
             'updated_at' => $this->updated_at,
             'photo' => $this->photo,
             'user' => [
