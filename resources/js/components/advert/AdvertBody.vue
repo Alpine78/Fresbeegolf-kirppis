@@ -53,10 +53,8 @@ export default {
     }
   },
   computed: {
-      loggedIn() {
-    //   return this.$store.getters.loggedIn
-    let juuseri = localStorage.getItem('access_token');
-    return juuseri;
+    ownAdvert() {
+      return this.advert.user_id === this.$store.getters.userdetails.id;
     }
   }
 }
