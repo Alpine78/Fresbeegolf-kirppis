@@ -107,8 +107,10 @@
         <b-img v-if="form.photo" :src="form.photo" fluid alt="Responsive image"></b-img>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button v-if="!advert_id" type="submit" variant="primary">Lähetä</b-button>
+      <b-button v-if="!advert_id"  type="reset" variant="danger">Tyhjennä</b-button>
+      <b-button v-if="advert_id" @click.prevent="saveChanges" variant="primary">Tallenna muutokset</b-button>
+      <b-button v-if="advert_id" @click.prevent="cancel" variant="danger">Peruuta</b-button>
     </b-form>
   </div>
 </template>
@@ -119,7 +121,7 @@
     data() {
       return {
         form: {
-          user_id: 1,
+          user_id: this.$store.getters.userdetails.id,
           main_photo_id: 1,
           title: '',
           content: '',
@@ -146,10 +148,36 @@
           ],
         show: true,
         edit: false,
-        files: []
+        files: [],
+        advert_id: this.$route.params.id || null,
       }
     },
     methods: {
+      setFormData() {
+        this.form.title = this.$store.getters.activeAdvert.title;
+        this.form.content = this.$store.getters.activeAdvert.content;
+        this.form.brand = this.$store.getters.activeAdvert.brand;
+        this.form.model = this.$store.getters.activeAdvert.model;
+        this.form.type = this.$store.getters.activeAdvert.type;
+        this.form.condition = this.$store.getters.activeAdvert.condition;
+        this.form.price = this.$store.getters.activeAdvert.price;
+        this.form.photo = this.$store.getters.activeAdvert.photo;
+      },
+      getAdvertDetails() {
+        // Haetaan muokattavan ilmoituksen tiedot lomakkeelle, jos ollaan muokkaamassa
+        if (this.advert_id) {
+          console.log('Muokkaustila!');
+          this.$store.dispatch('getAdvertDetails', this.advert_id);
+        } else {
+          console.log('Uuden ilmoituksen teko');
+        }
+      },
+      saveChanges() {
+        console.log('Tallennetaan muutokset...');
+      },
+      cancel() {
+        this.$router.push({ name:'frontPage'});
+      },
       fieldChange(e) {
         var vm = this;
         // this.files = [];
@@ -252,12 +280,59 @@
         this.form.condition = null
         this.form.price = ''
         this.form.photos = []
+        this.form.photo = ''
         /* Trick to reset/clear native browser form validation state */
         this.show = false
         this.$nextTick(() => {
           this.show = true
         })
       }
+    },
+    created() {
+
+      var promise = new Promise(function(resolve,reject){
+        console.log('Promise alkaa');
+          
+          /* 
+          * Do things here (synchronous or asynchronous)
+          * some examples:
+          * -- run loops
+          * -- perform ajax requests
+          * -- count sheep!
+          */
+         this.getAdvertDetails();
+
+          
+          if(this.advert_id === this.$store.getters.activeAdvert.title.id) {
+            console.log('Täsmää', this.$store.getters.activeAdvert.title.id);
+            resolve(some_desired_arg)
+          } 
+          else {
+            console.log('Reject');
+            reject(some_other_arg)
+
+          }
+      });
+
+      promise.then(function(some_desired_arg){
+          /* 
+          * handle desired output 
+          * other examples online might call this "Success"
+          */
+         console.log('Data haettu, laitetaan lomakkeelle');
+
+        this.setFormData();
+
+      }).catch(function(some_other_arg){
+          /* 
+          * handle other output 
+          * other examples online might call this "Fail"
+          */
+      });
+
+      // this.getAdvertDetails();
+      // console.log('Ei ehdi');
+      // this.setFormData();
     }
   }
 </script>

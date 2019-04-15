@@ -14,7 +14,6 @@
     </div>
     <seller-info :seller="seller"></seller-info>
     <advert-messages></advert-messages>
-    {{ loggedIn }}
   </b-container>
 </template>
 
@@ -36,6 +35,8 @@ export default {
   },
   methods: {
     getAdvertDetails() {
+        // TODO Vaihda tähän Vuex-metodi, joka on jo valmis
+        // this.$store.dispatch('getAdvertDetails', this.advert_id);
       const url = '/api/ilmoitus/' + this.id;
       fetch(url)
         .then(res => res.json())
