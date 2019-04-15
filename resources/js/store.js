@@ -9,19 +9,11 @@ export const store = new Vuex.Store({
 
     state:{
         token: localStorage.getItem('access_token') || null,
-        userdetails: {},
-        activeAdvert: {}
     },
     getters: {
       loggedIn(state){
           return state.token !== null
       },
-      userdetails: state => {
-          return state.userdetails;
-      },
-      activeAdvert: state => {
-        return state.activeAdvert;
-      }
     },
     mutations: {
         retrieveToken(state, token){
@@ -29,13 +21,6 @@ export const store = new Vuex.Store({
         },
         destroyToken(state){
             state.token = null
-        },
-        setUserData: (state, data) => {
-            console.log(data);
-            state.userdetails = data;
-        },
-        setActiveAdvert: (state, data) => {
-            state.activeAdvert = data;
         },
     },
     actions:{
@@ -101,8 +86,6 @@ export const store = new Vuex.Store({
                     })
                         .then( response => {
                             resolve(response)
-                            context.commit('setUserData', response.data);
-                            // console.log(response);
                         })
                         .catch(error => {
                             reject(error)
@@ -185,18 +168,5 @@ export const store = new Vuex.Store({
                 })
             }
         },
-        getAdvertDetails(context, advert_id) {
-            console.log('Storessa ilmoituksen nouto');
-            const url = '/api/ilmoitus/' + advert_id;
-            fetch(url)
-            .then(res => res.json())
-            .then(res => {
-                context.commit('setActiveAdvert', res.data);
-                console.log(res.data);
-                // this.advert = res.data;
-                // this.seller = res.user;
-            })
-            .catch(err => console.log(err));
-        }
     }
 })

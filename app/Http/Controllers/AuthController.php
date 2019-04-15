@@ -87,7 +87,6 @@ class AuthController extends Controller
 
     public function getUserData (Request $request) {
         $myUser = array(
-            'id'=>$request->user()->id,
             'firstname'=>$request->user()->firstname,
             'lastname'=>$request->user()->lastname,
             'email'=>$request->user()->email,

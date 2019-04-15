@@ -2,21 +2,21 @@
 <b-container>
 
   <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li
-        :class="[{disabled: !pagination.prev_page_url}]"
-        class="page-item"><a class="page-link"
-        @click="getAdverts(pagination.prev_page_url)"
-        :style="{ cursor: 'pointer'}">Edellinen</a></li>
-      <li class="page-item disabled"><a class="page-link text-dark">Sivu {{ pagination.current_page }}/{{ pagination.last_page }}</a></li>
-      <li class="page-item">
-        <a :class="[{disabled: !pagination.next_page_url}]" class="page-link"
-        @click="getAdverts(pagination.next_page_url)" 
-        :style="{ cursor: 'pointer'}">Seuraava
-        </a>
-        </li>
-    </ul>
-  </nav>
+  <ul class="pagination">
+    <li
+      :class="[{disabled: !pagination.prev_page_url}]"
+      class="page-item"><a class="page-link"
+      @click="getAdverts(pagination.prev_page_url)"
+      :style="{ cursor: 'pointer'}">Edellinen</a></li>
+    <li class="page-item disabled"><a class="page-link text-dark">Sivu {{ pagination.current_page }}/{{ pagination.last_page }}</a></li>
+    <li class="page-item">
+      <a :class="[{disabled: !pagination.next_page_url}]" class="page-link"
+      @click="getAdverts(pagination.next_page_url)" 
+      :style="{ cursor: 'pointer'}">Seuraava
+      </a>
+      </li>
+  </ul>
+</nav>
 
 
   <b-card-group columns>
@@ -27,23 +27,6 @@
       @refreshAdverts="getAdverts(current_page_url)"
       />
   </b-card-group>
-
-    <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li
-        :class="[{disabled: !pagination.prev_page_url}]"
-        class="page-item"><a class="page-link"
-        @click="getAdverts(pagination.prev_page_url)"
-        :style="{ cursor: 'pointer'}">Edellinen</a></li>
-      <li class="page-item disabled"><a class="page-link text-dark">Sivu {{ pagination.current_page }}/{{ pagination.last_page }}</a></li>
-      <li class="page-item">
-        <a :class="[{disabled: !pagination.next_page_url}]" class="page-link"
-        @click="getAdverts(pagination.next_page_url)" 
-        :style="{ cursor: 'pointer'}">Seuraava
-        </a>
-        </li>
-    </ul>
-  </nav>
 
   </b-container>
 </template>
@@ -75,7 +58,7 @@ export default {
         console.log(this.current_page_url);
       }
       let vm = this;
-      page_url = page_url || 'api/ilmoitus';
+      page_url = page_url || 'api/ilmoitukset';
       fetch(page_url)
       .then(res => res.json())
       .then(res => {
