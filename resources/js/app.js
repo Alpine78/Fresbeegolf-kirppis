@@ -74,7 +74,7 @@ const Advert = {
          // if not, redirect to login page.
          if (!store.getters.loggedIn) {
              next({
-                 path: '/login',
+                 path: '/kirjaudu',
              })
          } else {
              next()

@@ -96,7 +96,7 @@
       <template>
         <b-form-file
           id="photo"
-          required
+          :required=required
           accept="image/jpeg, image/png, image/gif"
           :state="Boolean(form.photo)"
           placeholder="Lisää kuva..."
@@ -104,12 +104,12 @@
           @change="fieldChange"
         ></b-form-file>
         </template>
-        <b-img v-if="form.photo" :src="form.photo" fluid alt="Responsive image"></b-img>
+        <b-img v-if="form.photo" :src="form.photo" fluid alt="Kiekon kuva"></b-img>
       </b-form-group>
 
       <b-button v-if="!advert_id" type="submit" variant="primary">Lähetä</b-button>
       <b-button v-if="!advert_id"  type="reset" variant="danger">Tyhjennä</b-button>
-      <b-button v-if="advert_id" @click.prevent="saveChanges" variant="primary">Tallenna muutokset</b-button>
+      <b-button v-if="advert_id" type="submit" variant="primary">Tallenna muutokset</b-button>
       <b-button v-if="advert_id" @click.prevent="cancel" variant="danger">Peruuta</b-button>
     </b-form>
   </div>
@@ -150,7 +150,14 @@
         edit: false,
         files: [],
         advert_id: this.$route.params.id || null,
+        required: true
       }
+    },
+    watch: {
+
+    },
+    computed: {
+
     },
     methods: {
       setFormData() {
@@ -161,7 +168,9 @@
         this.form.type = this.$store.getters.activeAdvert.type;
         this.form.condition = this.$store.getters.activeAdvert.condition;
         this.form.price = this.$store.getters.activeAdvert.price;
-        this.form.photo = this.$store.getters.activeAdvert.photo;
+        this.loadPhoto(this.$store.getters.activeAdvert.photo);
+        console.log(this.form.photo);
+        this.required = false;
       },
       getAdvertDetails() {
         // Haetaan muokattavan ilmoituksen tiedot lomakkeelle, jos ollaan muokkaamassa
@@ -178,55 +187,55 @@
       cancel() {
         this.$router.push({ name:'frontPage'});
       },
+      loadPhoto(photoUrl) {
+        console.log('Kuvan lataus urlista ', '/' + photoUrl);
+        let vm = this;
+
+        fetch('/' + photoUrl)
+        .then( response => response.blob() )
+        .then( blob =>{
+            var reader = new FileReader() ;
+            reader.onload = function(){ 
+              console.log(this.result) 
+              vm.form.photo = this.result;
+              } ; // <--- `this.result` contains a base64 data URI
+            reader.readAsDataURL(blob) ;
+        }) ;
+
+        // Lomakkeelle pitää kertoa, että kuva on jo siinä, eikä ole pakko vaihtaa
+
+
+        // fetch('/' + photoUrl)
+        //   .then(response => response.json())
+        //   .then(json => console.log(json))
+      },
       fieldChange(e) {
         var vm = this;
-        // this.files = [];
-        // // this.files.push(e.target.files);
-        // const files = e.target.files;
-        // var myphotos = e.target.files;
-        // console.log(myphotos);
-        
-        // myphotos.forEach(photo => {
-        //     var file = photo;
-        //     var reader = new FileReader();
-        //     reader.onloadend = function() {
-        //       console.log('RESULT', reader.result)
-        //     }
-        //     reader.readAsDataURL(file);
-        // })
-
-
-        // // Muutetaan tiedostot base64-muotoon
-        // for (var i = 0; i < e.target.files.length; i++) {
-        //   // var file = files[fileIndex];
-        //   console.log('File ', file);
-
-          console.log(e.target.files[0]);
-          let file = e.target.files[0];
-          let reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = e => {
-            console.log(e);
-            this.form.photo = e.target.result;
-          }
-          // reader.onloadend = function() {
-          // console.log('Result', reader.result);
-          // vm.photo = reader.result;
-          // }
-          // var temp = reader.readAsDataURL(file);
-          // console.log('this.photo ', vm.photo);
-
-        // }
-
+        console.log(e.target.files[0]);
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = e => {
+          console.log(e);
+          this.form.photo = e.target.result;
+        }
+        this.required = true;
       },
       onSubmit() {
+        let method = '';
+        let url = 'api/ilmoitus';
         console.log(JSON.stringify(this.form));
-        if (this.edit) {
-          console.log('Tallennetaan muutokset');
+        if (this.advert_id) {
+          method = 'put';
+          url = '/api/muokkaa/' + this.advert_id;
+          console.log('Tallennetaan muutokset ', method);
         } else {
-          console.log('Tallennetaan uusi ilmoitus');
-          let result = fetch('api/ilmoitus', {
-            method: 'post',
+          method = 'post';
+          console.log('Tallennetaan uusi ilmoitus ', method);
+        }
+          console.log(url);
+          let result = fetch(url, {
+            method: method,
             body: JSON.stringify(this.form),
             headers: {
               'Content-Type' : 'application/json'
@@ -234,24 +243,16 @@
           })
           .then(res => res.json())
           .then(data => {
-            console.log('Ilmoitus jätetty. Yritetään kuvien tallennusta');
+            console.log('Ilmoitus jätetty.');
             // this.savePhotos(data);
             this.onReset();
             this.$router.push({name: 'frontPage'});
           })
           .catch('Tekstitallennuksen virhe: ', err => console.log(err));
-        }
       },
       savePhotos(data) {
         console.log('Tuleeko kuvia? ', this.files);
         console.log('Dataa, advert id? ', data.data.id);
-
-        // let file = this.files[0];
-        // let reader = new FileReader();
-        // reader.onloadend = function() {
-        //   console.log('Result', reader.result);
-        // }
-        // reader.readAsDataURL(file);
 
         // Eka viritys
         var fd = new FormData();
@@ -289,50 +290,14 @@
       }
     },
     created() {
+      this.onReset();
+      if (this.advert_id) {
+        this.getAdvertDetails();
+        setTimeout(this.setFormData, 500);
+      }
+      // setTimeout on vähän köpönen ratkaisu. Promiseja olisi pitänyt käyttää,
+      // mutta ei se nyt ruvennut pelaamaan.
 
-      var promise = new Promise(function(resolve,reject){
-        console.log('Promise alkaa');
-          
-          /* 
-          * Do things here (synchronous or asynchronous)
-          * some examples:
-          * -- run loops
-          * -- perform ajax requests
-          * -- count sheep!
-          */
-         this.getAdvertDetails();
-
-          
-          if(this.advert_id === this.$store.getters.activeAdvert.title.id) {
-            console.log('Täsmää', this.$store.getters.activeAdvert.title.id);
-            resolve(some_desired_arg)
-          } 
-          else {
-            console.log('Reject');
-            reject(some_other_arg)
-
-          }
-      });
-
-      promise.then(function(some_desired_arg){
-          /* 
-          * handle desired output 
-          * other examples online might call this "Success"
-          */
-         console.log('Data haettu, laitetaan lomakkeelle');
-
-        this.setFormData();
-
-      }).catch(function(some_other_arg){
-          /* 
-          * handle other output 
-          * other examples online might call this "Fail"
-          */
-      });
-
-      // this.getAdvertDetails();
-      // console.log('Ei ehdi');
-      // this.setFormData();
     }
   }
 </script>
