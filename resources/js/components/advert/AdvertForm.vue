@@ -290,49 +290,18 @@
     },
     created() {
 
-      var promise = new Promise(function(resolve,reject){
-        console.log('Promise alkaa');
-          
-          /* 
-          * Do things here (synchronous or asynchronous)
-          * some examples:
-          * -- run loops
-          * -- perform ajax requests
-          * -- count sheep!
-          */
-         this.getAdvertDetails();
-
-          
-          if(this.advert_id === this.$store.getters.activeAdvert.title.id) {
-            console.log('Täsmää', this.$store.getters.activeAdvert.title.id);
-            resolve(some_desired_arg)
-          } 
-          else {
-            console.log('Reject');
-            reject(some_other_arg)
-
-          }
+      var promise = new Promise(function(resolve, reject) {
+        resolve(this.$store.getters.activeAdvert);
       });
 
-      promise.then(function(some_desired_arg){
-          /* 
-          * handle desired output 
-          * other examples online might call this "Success"
-          */
-         console.log('Data haettu, laitetaan lomakkeelle');
+      promise.then(function(advert){
+        console.log(data);
+      })
 
-        this.setFormData();
 
-      }).catch(function(some_other_arg){
-          /* 
-          * handle other output 
-          * other examples online might call this "Fail"
-          */
-      });
-
-      // this.getAdvertDetails();
-      // console.log('Ei ehdi');
-      // this.setFormData();
+      this.getAdvertDetails();
+      console.log('Ei ehdi');
+      this.setFormData();
     }
   }
 </script>
