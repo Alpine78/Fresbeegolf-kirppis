@@ -18,10 +18,9 @@ class IlmoitusController extends Controller
      */
     public function index()
     {
-        // Ilmoitukset
         $adverts = Advert::orderBy('updated_at', 'desc')->paginate(15);
-            //->get();
-            //->paginate(15);
+        //->get();
+        //->paginate(15);
 
         // Palauta kaikki resurssina
         return IlmoitusResource::collection($adverts);

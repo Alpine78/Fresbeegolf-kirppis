@@ -30,7 +30,7 @@ Route::middleware('auth:api')->get('/messages', 'ChatController@fetchMessages');
 Route::middleware('auth:api')->post('/sendMessage', 'ChatController@sendMessage');
 Route::middleware('auth:api')->get('/conversations', 'ChatController@fetchConversations');
 
-// Kaikki ilmoitukset
+/*// Kaikki ilmoitukset
 Route::get('ilmoitukset', 'AdvertController@index');
 
 // Yksi ilmoitus
@@ -43,7 +43,7 @@ Route::post('ilmoitus', 'AdvertController@store');
 Route::put('advert/{id}', 'AdvertController@update');
 
 // Poista ilmoitus
-Route::delete('advert/{id}', 'AdvertController@destroy');
+Route::delete('advert/{id}', 'AdvertController@destroy');*/
 
 ///////////////////////////////////////
 
