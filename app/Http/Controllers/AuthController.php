@@ -85,5 +85,19 @@ class AuthController extends Controller
 
     }
 
+    public function getUserData (Request $request) {
+        $myUser = array(
+            'id'=>$request->user()->id,
+            'firstname'=>$request->user()->firstname,
+            'lastname'=>$request->user()->lastname,
+            'email'=>$request->user()->email,
+            'nickname'=>$request->user()->nickname,
+            'address'=>$request->user()->address,
+            'city'=>$request->user()->city,
+            'zipcode'=>$request->user()->zipcode,
+            'phonenumber'=>$request->user()->phonenumber
+        );
+        return json_encode($myUser);
+    }
 
 }

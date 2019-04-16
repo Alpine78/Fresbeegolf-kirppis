@@ -49,7 +49,7 @@
                     username: this.username,
                     password: this.password,
                 }).then(response => {
-                        this.$router.push({name: 'frontpage'})
+                        this.$router.push({name: 'frontPage'})
                     })
                     .catch(error =>{
                         if(error.response.status == 401){

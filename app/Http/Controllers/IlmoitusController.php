@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Advert as AdvertResource;
-use App\Http\Resources\Photo;
 use Illuminate\Http\Request;
 use App\Advert;
+use App\Http\Resources\Photo;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Http\Resources\Ilmoitus as IlmoitusResource;
 
-class AdvertController extends Controller
+
+class IlmoitusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +24,7 @@ class AdvertController extends Controller
             //->paginate(15);
 
         // Palauta kaikki resurssina
-        return AdvertResource::collection($adverts);
+        return IlmoitusResource::collection($adverts);
     }
 
     /**
@@ -72,7 +73,7 @@ class AdvertController extends Controller
 
         if($advert->save()) {
 //            return new AdvertResource($advert);
-            $newAdvert = new AdvertResource($advert);
+            $newAdvert = new IlmoitusResource($advert);
 //            $this->savePhotos($photo, $advert->id);
 
 //            return $request->input('photos');
@@ -101,7 +102,7 @@ class AdvertController extends Controller
         $advert = Advert::findOrFail($id);
 
         // Palauta yksi ilmoitus resurssina
-        return new AdvertResource($advert);
+        return new IlmoitusResource($advert);
     }
 
     /**
@@ -139,7 +140,7 @@ class AdvertController extends Controller
         $advert = Advert::findOrFail($id);
 
         if($advert->delete()) {
-            return new AdvertResource($advert);
+            return new IlmoitusResource($advert);
         }
     }
 }

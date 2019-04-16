@@ -6,6 +6,8 @@ import Logout from './components/auth/Logout'
 import Register from './components/auth/Register'
 import FrontPage from './components/FrontPage'
 import Profile from "./components/Profile";
+import ChatList from "./components/chat/ChatList";
+import ChatBody from "./components/chat/ChatBody";
 import AdvertBody from './components/advert/AdvertBody';
 import AdvertForm from './components/advert/AdvertForm';
 
@@ -24,11 +26,19 @@ const router = new VueRouter({
             component: AdvertBody,
             children: [
                 { path: ':id', component: AdvertBody },
-                { path: ':id/muokkaa', component: AdvertBody }                
             ]
         },
+        // {
+        //     path: '/muokkaa',
+        //     name: 'muokkaa',
+        //     component: AdvertBody,
+        //     children: [
+        //         { path: ':id', component: AdvertForm },
+        //         { path: ':id/muokkaa', component: AdvertForm }                
+        //     ]
+        // },
         {
-            path: '/login',
+            path: '/kirjaudu',
             name: 'login',
             component: Login,
             meta: {
@@ -36,7 +46,7 @@ const router = new VueRouter({
             },
         },
         {
-            path: '/register',
+            path: '/rekisteroidy',
             name: 'register',
             component: Register,
             meta: {
@@ -45,21 +55,29 @@ const router = new VueRouter({
         },
         {
             path: '/',
-            name: 'frontpage',
+            name: 'frontPage',
             component: FrontPage
         },
         {
-            path: '/logout',
-            name: 'logout',
+            path: '/ulos',
+            name: 'signout',
             component: Logout,
             meta: {
                 requiresAuth: true,
             },
         },
         {
-            path: '/profile',
+            path: '/profiili',
             name: 'profile',
             component: Profile,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/keskustelut',
+            name: 'chat',
+            component: ChatList,
             meta: {
                 requiresAuth: true,
             },
@@ -71,7 +89,19 @@ const router = new VueRouter({
             meta: {
                 requiresAuth: true,
             },
+            children: [
+                { path: ':id', component: AdvertBody },
+            ]
+        },
+        {
+            path: '/keskustelu/:userId',
+            name: 'privateChat',
+            component: ChatBody,
+            meta: {
+                requiresAuth: true,
+            },
         }
+
     ]
 });
 

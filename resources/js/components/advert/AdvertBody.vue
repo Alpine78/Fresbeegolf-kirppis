@@ -5,10 +5,9 @@
     <!-- Pääkuva voidaan esittää varmaan suoraan. Eli advert-photon voisi heivata pois -->
     <!-- <advert-photo></advert-photo> -->
     <div>
-      <b-img src="http://www.prodigydisc.eu/file/2016/12/Prodigy-Disc-750-X1-blue.png" fluid-grow alt="Fluid-grow   image" width="50%"/>
+      <b-img :src="'/' + advert.photo" fluid-grow alt="Kiekon kuva" width="50%"/>
     </div>
-
-    <photo-gallery></photo-gallery>
+    <!-- <photo-gallery></photo-gallery> -->
     <!-- <advert-description></advert-description> -->
     <div>
       {{ advert.content}}
@@ -36,6 +35,8 @@ export default {
   },
   methods: {
     getAdvertDetails() {
+        // TODO Vaihda tähän Vuex-metodi, joka on jo valmis
+        // this.$store.dispatch('getAdvertDetails', this.advert_id);
       const url = '/api/ilmoitus/' + this.id;
       fetch(url)
         .then(res => res.json())
@@ -50,6 +51,11 @@ export default {
   created() {
     if (this.$route.params.id) {
       this.getAdvertDetails();
+    }
+  },
+  computed: {
+    ownAdvert() {
+      return this.advert.user_id === this.$store.getters.userdetails.id;
     }
   }
 }
