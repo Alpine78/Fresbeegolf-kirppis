@@ -22,7 +22,7 @@ export default {
   name: 'AdvertBody',
   data() {
     return {
-      id: this.$route.params.id,
+      id: this.$route.params.id || null,
       advert: {},
       seller: {}
     }

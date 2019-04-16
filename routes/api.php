@@ -40,10 +40,29 @@ Route::get('ilmoitus/{id}', 'AdvertController@show');
 Route::post('ilmoitus', 'AdvertController@store');
 
 // Päivitä ilmoitus
-Route::put('ilmoitus', 'AdvertController@store');
+Route::put('advert/{id}', 'AdvertController@update');
 
 // Poista ilmoitus
-Route::delete('ilmoitus/{id}', 'AdvertController@destroy');
+Route::delete('advert/{id}', 'AdvertController@destroy');
+
+///////////////////////////////////////
+
+// Kaikki ilmoitukset
+Route::get('ilmoitus', 'IlmoitusController@index');
+
+// Yksi ilmoitus
+Route::get('ilmoitus/{id}', 'IlmoitusController@show');
+
+// Luo ilmoitus
+Route::post('ilmoitus', 'IlmoitusController@store');
+
+// Päivitä ilmoitus
+Route::put('muokkaa/{id}', 'IlmoitusController@update');
+
+// Poista ilmoitus
+Route::delete('ilmoitus/{id}', 'IlmoitusController@destroy');
+
+///////////////////////////////////////
 
 
 // Kaikki valokuvat
