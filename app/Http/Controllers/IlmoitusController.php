@@ -126,6 +126,39 @@ class IlmoitusController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $advert = Advert::findOrFail($id);
+
+        $advert->user_id = $request->input('user_id');
+        $advert->title = $request->input('title');
+        $advert->content = $request->input('content');
+        $advert->brand = $request->input('brand');
+        $advert->model = $request->input('model');
+        $advert->type = $request->input('type');
+        $advert->condition = $request->input('condition');
+        $advert->price = $request->input('price');
+        $advert->main_photo_id = $request->input('main_photo_id');
+
+        $photo = $request->input('photo');
+        $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+        \Image::make($request->photo)->save(public_path('images/').$name);
+        $request->merge(['photo' => $name]);
+//        $userPhoto = public_path('img/profile/').$currentPhoto;
+        $advert->photo = 'images/' . $name;
+
+        if($advert->save()) {
+//            return new AdvertResource($advert);
+            $newAdvert = new IlmoitusResource($advert);
+//            $this->savePhotos($photo, $advert->id);
+
+//            return $request->input('photos');
+
+
+            return $newAdvert;
+        }
+
+        dd($request);
+        return $request;
     }
 
     /**
