@@ -41,7 +41,8 @@ class Advert extends JsonResource
                 'nickname' => $user->nickname,
                 'city' => $user->city,
                 'email' => $user->email,
-                'phone' => $user->phonenumber
+                'phone' => $user->phonenumber,
+                'role' => $user->role
             ],
             'photo_gallery' => [
                 'main_photo_id' => $photo->id,

@@ -19,7 +19,7 @@ class IlmoitusController extends Controller
     public function index()
     {
         // Ilmoitukset
-        $adverts = Advert::orderBy('updated_at', 'desc')->paginate(15);
+        $adverts = Advert::whereNotNull('accepted_at')->orderBy('updated_at', 'desc')->paginate(15);
             //->get();
             //->paginate(15);
 
