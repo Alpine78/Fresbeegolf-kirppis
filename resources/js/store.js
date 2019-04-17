@@ -168,5 +168,24 @@ export const store = new Vuex.Store({
                 })
             }
         },
+        changePassword(context, data){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '  + context.state.token
+            if(context.getters.loggedIn){
+                return new Promise((resolve, reject) => {
+                    axios.post('/changePassword', {
+                        params: {
+                            currentPassword: data.currentPassword,
+                            newPassword: data.newPassword,
+                        }
+                    })
+                        .then( response => {
+                            resolve(response)
+                        })
+                        .catch( error => {
+                            reject(error)
+                        })
+                })
+            }
+        },
     }
 })

@@ -99,4 +99,15 @@ class AuthController extends Controller
         return json_encode($myUser);
     }
 
+    public function changePassword(Request $request) {
+
+        $password = Auth::user()->password;
+        if(Hash::check($request->params['currentPassword'],$password)){
+            Auth::user()->update(["password" => Hash::make($request->params['newPassword'])]);
+            return "SALASAVA VAIHDETTU";
+        }
+        return "Epäonnistui";
+
+    }
+
 }

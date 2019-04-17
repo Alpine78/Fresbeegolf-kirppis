@@ -24,6 +24,8 @@ Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 Route::middleware('auth:api')->post('/updateUser', 'AuthController@updateUser');
 Route::middleware('auth:api')->post('/logout', 'AuthController@logout');
+Route::middleware('auth:api')->post('/changePassword', 'AuthController@changePassword');
+
 
 //chat
 Route::middleware('auth:api')->get('/messages', 'ChatController@fetchMessages');
