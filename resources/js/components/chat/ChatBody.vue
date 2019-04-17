@@ -1,7 +1,6 @@
 <template>
   <div>
 
-    <h1>your id is {{id}}</h1>
     <h1>Keskustelu</h1>
     <chat-log :messages="this.messages"></chat-log>
     <chat-composer :userToId="this.id"></chat-composer>

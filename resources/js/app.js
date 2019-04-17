@@ -58,6 +58,7 @@ Vue.component('SearchResultItem', require('./components/search/SearchResultItem'
 Vue.component('SearchResults', require('./components/search/SearchResults').default);
 Vue.component('AdminView', require('./components/admin/Admin').default);
 Vue.component('ModerateAdverts', require('./components/admin/ModerateAdverts').default);
+Vue.component('DiscSearch', require('./components/search/DiscSearch').default);
 
 
 /**

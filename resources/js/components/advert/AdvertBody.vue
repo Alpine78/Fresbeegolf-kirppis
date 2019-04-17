@@ -13,7 +13,7 @@
       {{ advert.content}}
     </div>
     <seller-info :seller="seller"></seller-info>
-    <advert-messages></advert-messages>
+    <!-- <advert-messages></advert-messages> -->
   </b-container>
 </template>
 

@@ -11,6 +11,7 @@ import ChatBody from "./components/chat/ChatBody";
 import AdvertBody from './components/advert/AdvertBody';
 import AdvertForm from './components/advert/AdvertForm';
 import AdminView from './components/admin/Admin';
+import DiscSearch from './components/search/DiscSearch';
 
 
 Vue.use(VueRouter)
@@ -56,6 +57,11 @@ const router = new VueRouter({
             path: '/',
             name: 'frontPage',
             component: FrontPage
+        },
+        {
+            path: '/haku',
+            name: 'haku',
+            component: DiscSearch
         },
         {
             path: '/ulos',

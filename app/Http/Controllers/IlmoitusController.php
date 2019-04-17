@@ -26,6 +26,18 @@ class IlmoitusController extends Controller
         // Palauta kaikki resurssina
         return IlmoitusResource::collection($adverts);
     }
+    public function search(Request $request)
+    {
+        return $request;
+        // Ilmoitukset
+        $adverts = Advert::whereNotNull('accepted_at')->orderBy('updated_at', 'desc')->paginate(15);
+        //->get();
+        //->paginate(15);
+
+        // Palauta kaikki resurssina
+        return IlmoitusResource::collection($adverts);
+    }
+
 
     /**
      * Display a listing of the resource.

@@ -53,6 +53,9 @@ Route::delete('advert/{id}', 'AdvertController@destroy');
 // Kaikki ilmoitukset
 Route::get('ilmoitus', 'IlmoitusController@index');
 
+// Haku
+Route::post('haku', 'IlmoitusController@search');
+
 // Moderoitavat ilmoitukset
 Route::get('moderoi', 'IlmoitusController@moderate');
 
