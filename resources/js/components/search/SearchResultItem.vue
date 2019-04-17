@@ -8,8 +8,15 @@
         {{ advert.content }}
       </b-card-text>
       <b-button @click="showAdvert(advert.id)" class="mb-2" variant="primary">Näytä ilmoitus</b-button>
-      <b-button v-if="ownAdvert" @click.prevent="modifyAdvert(advert.id)" class="mb-2" variant="success">Muokkaa</b-button>
-      <b-button v-if="ownAdvert" @click.prevent="deleteAdvert(advert.id)" class="mb-2" variant="danger">Poista</b-button>
+      <template v-if="!moderate">
+        <b-button v-if="ownAdvert" @click.prevent="modifyAdvert(advert.id)" class="mb-2" variant="success">Muokkaa</b-button>
+        <b-button v-if="ownAdvert" @click.prevent="deleteAdvert(advert.id)" class="mb-2" variant="danger">Poista</b-button>
+      </template>
+      <template v-else>
+        <b-button @click.prevent="acceptAdvert(advert.id)" class="mb-2" variant="success">Hyväksy</b-button>
+        <b-button @click.prevent="refuseAdvert(advert.id)" class="mb-2" variant="danger">Hylkää</b-button>
+      </template>
+
       <div slot="footer"><small class="text-muted">Ilmoitus päivitetty {{ updated }}</small></div>
     </b-card>  
 </template>
@@ -22,7 +29,11 @@ export default {
   name: 'SearchResultItem',
   props: {
     advert: {},
-    counter: Number
+    counter: Number,
+    moderate: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     updated() {
@@ -58,7 +69,34 @@ export default {
         })
         .catch(err => console.log(err));
       }
+    },
+    acceptAdvert(id) {
+      if (confirm('Haluatko hyväksyä ilmoituksen?')) {
+        fetch(`/api/hyvaksy/${id}`, {
+          method: 'put'
+        })
+        .then(res => res.json)
+        .then(data => {
+          console.log('Ilmoitus hyväksytty!');
+          this.$emit('refreshAdverts')
+        })
+        .catch(err => console.log(err));
+      }
+    },
+    refuseAdvert(id) {
+      if (confirm('Haluatko hylätä ilmoituksen?')) {
+        fetch(`/api/hylkaa/${id}`, {
+          method: 'put'
+        })
+        .then(res => res.json)
+        .then(data => {
+          console.log('Ilmoitus hylätty!');
+          this.$emit('refreshAdverts')
+        })
+        .catch(err => console.log(err));
+      }
     }
+
   }
 }
 </script>

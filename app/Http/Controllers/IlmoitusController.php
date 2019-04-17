@@ -20,8 +20,37 @@ class IlmoitusController extends Controller
     {
         // Ilmoitukset
         $adverts = Advert::whereNotNull('accepted_at')->orderBy('updated_at', 'desc')->paginate(15);
-            //->get();
-            //->paginate(15);
+        //->get();
+        //->paginate(15);
+
+        // Palauta kaikki resurssina
+        return IlmoitusResource::collection($adverts);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function moderate()
+    {
+        //  Moderoitavat ilmoitukset
+
+        //$matchThese = ['accepted_at' => notNull];
+        //$adverts = Advert::where($matchThese)->paginate(15);
+        //$adverts = Advert::query();
+        //$adverts->whereNull('accepted_at');
+        //$adverts->whereNotNull('refused_at');
+        //$adverts->orderBy('updated_at', 'asc')->paginate(15);
+
+        //$adverts = Advert::whereNull('accepted_at');
+        //$adverts = $adverts->orderBy('updated_at', 'asc')->paginate(15);
+
+        $adverts = Advert::where('accepted_at',null)->orWhereNotNull('refused_at')->orderBy('updated_at', 'asc')->paginate(15);
+
+
+        //->get();
+        //->paginate(15);
 
         // Palauta kaikki resurssina
         return IlmoitusResource::collection($adverts);
@@ -157,8 +186,8 @@ class IlmoitusController extends Controller
             return $newAdvert;
         }
 
-        dd($request);
-        return $request;
+        // dd($request);
+        // return $request;
     }
 
     /**
@@ -176,4 +205,31 @@ class IlmoitusController extends Controller
             return new IlmoitusResource($advert);
         }
     }
+
+    public function accept($id)
+    {
+        // Moderaattori hyväksyy ilmoituksen
+        $advert = Advert::findOrFail($id);
+        $advert->accepted_at = date('Y-m-d H:i:s');
+
+        if($advert->save()) {
+            //return new AdvertResource($advert);
+            return new IlmoitusResource($advert);
+        }
+
+    }
+
+    public function refuse($id)
+    {
+        // Moderaattori hylkää ilmoituksen
+        $advert = Advert::findOrFail($id);
+        $advert->refused_at = date('Y-m-d H:i:s');
+
+        if($advert->save()) {
+            //return new AdvertResource($advert);
+            return new IlmoitusResource($advert);
+        }
+
+    }
+
 }

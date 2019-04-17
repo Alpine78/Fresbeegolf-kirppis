@@ -293,8 +293,13 @@
       this.onReset();
       if (this.advert_id) {
         this.getAdvertDetails();
-        setTimeout(this.setFormData, 500);
+        setTimeout(this.setFormData, 1000);
       }
+      // this.getAdvertDetails()
+      // .then(()=> {
+      //   this.setFormData();
+      // })
+
       // setTimeout on vähän köpönen ratkaisu. Promiseja olisi pitänyt käyttää,
       // mutta ei se nyt ruvennut pelaamaan.
 

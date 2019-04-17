@@ -56,6 +56,8 @@ Vue.component('SearchInfo', require('./components/search/SearchInfo').default);
 Vue.component('SearchPhoto', require('./components/search/SearchPhoto').default);
 Vue.component('SearchResultItem', require('./components/search/SearchResultItem').default);
 Vue.component('SearchResults', require('./components/search/SearchResults').default);
+Vue.component('AdminView', require('./components/admin/Admin').default);
+Vue.component('ModerateAdverts', require('./components/admin/ModerateAdverts').default);
 
 
 /**

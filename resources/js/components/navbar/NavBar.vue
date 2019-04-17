@@ -10,7 +10,7 @@
 
             <b-navbar-nav>
                 <b-nav-item><b-link :to="{ name: 'ilmoitus'}">Omat ilmoitukset</b-link></b-nav-item>
-                <b-nav-item disabled>Ylläpito</b-nav-item>
+                <b-nav-item v-if="moderator || admin"><b-link :to="{ name: 'admin'}">Ylläpito</b-link></b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -35,7 +35,16 @@
         computed: {
             loggedIn() {
                 return this.$store.getters.loggedIn
-            }
+            },
+            userdetails() {
+                return this.$store.getters.userdetails;
+            },
+            moderator() {
+                return this.userdetails.role === 1;
+            },       
+            admin() {
+                return this.userdetails.role === 2;
+            }        
         }
     }
 </script>

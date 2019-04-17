@@ -30,8 +30,11 @@ Route::middleware('auth:api')->get('/messages', 'ChatController@fetchMessages');
 Route::middleware('auth:api')->post('/sendMessage', 'ChatController@sendMessage');
 Route::middleware('auth:api')->get('/conversations', 'ChatController@fetchConversations');
 
-// Kaikki ilmoitukset
+// Kaikki hyväksytyt ilmoitukset
 Route::get('advert', 'AdvertController@index');
+
+// Moderoitavat ilmoitukset
+Route::get('moderate', 'AdvertController@moderate');
 
 // Yksi ilmoitus
 Route::get('advert/{id}', 'AdvertController@show');
@@ -50,6 +53,9 @@ Route::delete('advert/{id}', 'AdvertController@destroy');
 // Kaikki ilmoitukset
 Route::get('ilmoitus', 'IlmoitusController@index');
 
+// Moderoitavat ilmoitukset
+Route::get('moderoi', 'IlmoitusController@moderate');
+
 // Yksi ilmoitus
 Route::get('ilmoitus/{id}', 'IlmoitusController@show');
 
@@ -58,6 +64,12 @@ Route::post('ilmoitus', 'IlmoitusController@store');
 
 // Päivitä ilmoitus
 Route::put('muokkaa/{id}', 'IlmoitusController@update');
+
+// Hyväksy ilmoitus
+Route::put('hyvaksy/{id}', 'IlmoitusController@accept');
+
+// Hylkää ilmoitus
+Route::put('hylkaa/{id}', 'IlmoitusController@refuse');
 
 // Poista ilmoitus
 Route::delete('ilmoitus/{id}', 'IlmoitusController@destroy');

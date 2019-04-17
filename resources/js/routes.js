@@ -10,8 +10,7 @@ import ChatList from "./components/chat/ChatList";
 import ChatBody from "./components/chat/ChatBody";
 import AdvertBody from './components/advert/AdvertBody';
 import AdvertForm from './components/advert/AdvertForm';
-
-
+import AdminView from './components/admin/Admin';
 
 
 Vue.use(VueRouter)
@@ -78,6 +77,14 @@ const router = new VueRouter({
             path: '/keskustelut',
             name: 'chat',
             component: ChatList,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/yllapito',
+            name: 'admin',
+            component: AdminView,
             meta: {
                 requiresAuth: true,
             },
